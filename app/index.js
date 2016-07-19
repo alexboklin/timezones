@@ -1,5 +1,5 @@
 var React = require('react');
-var ReactDOM = require('react-dom');
+import ReactDOM from 'react-dom';
 
 var Hello = React.createClass({
   render: function () {
