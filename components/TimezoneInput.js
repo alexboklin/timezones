@@ -3,7 +3,7 @@ import React from 'react';
 export default class TimezoneInput extends React.Component {
   render() {
     return (
-      <div>
+      <div className="col-sm-6 col-sm-offset-3 text-center">
         <form onSubmit={console.log("onSubmit")}>
           <input
             type="text"
