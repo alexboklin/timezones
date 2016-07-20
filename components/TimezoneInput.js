@@ -11,13 +11,19 @@ export default class TimezoneInput extends React.Component {
     handleChange(event) {
         this.setState({
             inputText: event.target.value
-        });
+        })
+    };
+
+    handleSubmit(event) {
+        event.preventDefault();
+        console.log("Submitted!");
+        console.log(this.state);
     }
 
     render() {
         return (
             <div className="col-sm-6 col-sm-offset-3 text-center">
-                <form onSubmit={console.log("onSubmit")}>
+                <form onSubmit={this.handleSubmit.bind(this)}>
                     <input
                         type="text"
                         placeholder="Type in the city"
