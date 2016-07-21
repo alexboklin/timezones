@@ -1,4 +1,5 @@
 import React from 'react';
+import RaisedButton from 'material-ui/RaisedButton';
 
 export default class TimezoneInput extends React.Component {
     constructor(props) {
@@ -8,12 +9,14 @@ export default class TimezoneInput extends React.Component {
         }
     }
 
+    // TODO: turn this into an arrow function to eliminate binding
     handleChange(event) {
         this.setState({
             inputText: event.target.value
         })
     };
 
+    // TODO: turn this into an arrow function to eliminate binding
     handleSubmit(event) {
         event.preventDefault();
         console.log("Submitted!");
@@ -32,7 +35,8 @@ export default class TimezoneInput extends React.Component {
                     />
                 <input type="submit" value="Submit"/>
                 </form>
+                <RaisedButton label="Submit!"/>
             </div>
         )
     }
-}
+};

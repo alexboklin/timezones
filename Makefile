@@ -1,5 +1,9 @@
 deps:
-	npm install --save react react-dom react-redux redux redux-logger html-webpack-plugin webpack babel-core babel-loader babel-preset-react babel-preset-es2015 
+	npm install --save \
+	react react-dom react-redux redux redux-logger \
+	webpack html-webpack-plugin \
+	babel-core babel-loader babel-preset-react babel-preset-es2015 \
+	material-ui react-tap-event-plugin
 dev_deps:
 	npm install --save-dev webpack-dev-server
 create_files:

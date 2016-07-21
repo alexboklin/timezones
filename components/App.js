@@ -1,13 +1,14 @@
 import React from 'react';
 import TimezoneInput from './TimezoneInput';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-export default class App extends React.Component {
-  render() {
-    return (
+const App = () => (
+    <MuiThemeProvider>
         <div>
             <br/>
             <TimezoneInput/>
         </div>
-    )
-  }
-}
+    </MuiThemeProvider>
+);
+
+export default App;
