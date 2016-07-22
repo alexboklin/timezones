@@ -1,5 +1,5 @@
 import React from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
 export default class CityInput extends React.Component {
     constructor(props) {
@@ -12,28 +12,32 @@ export default class CityInput extends React.Component {
     handleChange = (event) => {
         this.setState({
             inputText: event.target.value
-        })
+        });
+
     };
 
     handleSubmit = (event) => {
-        event.preventDefault();
-        console.log("Submitted!");
-        console.log(this.state);
+        console.log(event.keyCode);
+
+        // On hitting Enter we add city to the list.
+        if (event.keyCode === 13) {
+            console.log(this.state);
+            alert("City N has been added to the list!"); // TODO: use string placeholder
+        }
     };
 
     render() {
         return (
+            // TODO: make it broader, the hintText doesn't fit in + increase offset
             <div className="col-sm-6 col-sm-offset-3 text-center">
-                <form onSubmit={this.handleSubmit}>
-                    <input
-                        type="text"
-                        placeholder="Type in the city"
-                        value={this.state.inputText}
-                        onChange={this.handleChange}
-                    />
-                <input type="submit" value="Submit"/>
-                </form>
-                <RaisedButton label="Submit!"/>
+                <TextField
+                    hintText="Type in the city you wish to search for"
+                    value={this.state.inputText}
+                    onChange={this.handleChange}
+                    onKeyDown={this.handleSubmit}
+                />
+
+
             </div>
         )
     };
