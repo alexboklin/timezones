@@ -1,3 +1,5 @@
+import { ADD_CITY, DELETE_CITY } from '../actionTypes';
+
 function getId(cities) {
     return cities.reduce((maxId, city) => {
         return Math.max(city.id, maxId)
@@ -6,13 +8,13 @@ function getId(cities) {
 
 let cityReducer = function(cities = [], action) {
   switch (action.type) {
-    case 'ADD_CITY':
+    case ADD_CITY:
       return [{
           cityName: action.text,
           enlisted: true,
           id: getId(cities)
         }, ...cities];
-    case 'DELETE_CITY':
+    case DELETE_CITY:
       return cities.filter((city) => {
         return city.id !== action.id
       });

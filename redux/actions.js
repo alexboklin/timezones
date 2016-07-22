@@ -1,6 +1,4 @@
-// TODO: put into separate file -- e.g., cityReducer will also need them.
-export const ADD_CITY = 'ADD_CITY';
-export const DELETE_CITY = 'DELETE_CITY';
+import { ADD_CITY, DELETE_CITY } from './actionTypes';
 
 // Wrap returned object in parens so it's interpreted as an object expression and not a block of code.
 export const addCity = (text) => ({
