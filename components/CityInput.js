@@ -22,7 +22,7 @@ export default class CityInput extends React.Component {
         // On hitting Enter we add city to the list.
         if (event.keyCode === 13) {
             console.log(this.state);
-            alert("City N has been added to the list!"); // TODO: use string placeholder
+            alert(`${this.state.inputText} has been added to the list!`); 
         }
     };
 
