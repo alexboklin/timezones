@@ -1,14 +1,15 @@
-function getId(cities) {return cities.reduce((maxId, city) => {
-    return Math.max(city.id, maxId)
-  }, -1) + 1
+function getId(cities) {
+    return cities.reduce((maxId, city) => {
+        return Math.max(city.id, maxId)
+    }, -1) + 1
 }
 
-let timezoneReducer = function(cities = [], action) {
+let cityReducer = function(cities = [], action) {
   switch (action.type) {
     case 'ADD_CITY':
       return [{
-          text: action.text,
-          completed: false,
+          cityName: action.text,
+          enlisted: true,
           id: getId(cities)
         }, ...cities];
     case 'DELETE_CITY':
@@ -20,4 +21,4 @@ let timezoneReducer = function(cities = [], action) {
   }
 };
 
-export default timezoneReducer
+export default cityReducer

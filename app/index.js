@@ -12,11 +12,7 @@ injectTapEventPlugin();
 
 // TODO: change initialState!
 let initialState = {
-  timezones: [{
-    id: 0,
-    completed: false,
-    text: 'Initial cities list'
-  }]
+  cities: []
 };
 
 const store = configureStore(initialState);
