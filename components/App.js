@@ -1,5 +1,6 @@
 import React from 'react';
 import CityInput from './CityInput';
+import CityList from './CityList';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const App = () => (
@@ -7,6 +8,8 @@ const App = () => (
         <div>
             <br/>
             <CityInput/>
+            <br/>
+            <CityList/>
         </div>
     </MuiThemeProvider>
 );
