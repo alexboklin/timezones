@@ -1,7 +1,7 @@
 import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 
-export default class TimezoneInput extends React.Component {
+export default class CityInput extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

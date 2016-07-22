@@ -5,8 +5,8 @@ import logger from 'redux-logger';
 
 let finalCreateStore = compose(
   applyMiddleware(logger()) // + applyMiddleware(thunk),
-)(createStore)
+)(createStore);
 
-export default function configureStore(initialState = { timezones: [] }) {
+export default function configureStore(initialState = { cities: [] }) {
   return finalCreateStore(rootReducer, initialState)
-}
+};

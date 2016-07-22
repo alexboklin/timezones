@@ -15,7 +15,7 @@ let initialState = {
   timezones: [{
     id: 0,
     completed: false,
-    text: 'Initial timezones list'
+    text: 'Initial cities list'
   }]
 };
 

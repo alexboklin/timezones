@@ -1,18 +1,19 @@
 let actions = {
+  // TODO: use arrow functions
   addTimezone: function(text) {
     return {
-      type: 'ADD_TIMEZONE',
+      type: 'ADD_CITY',
       text: text
     }
   },
 
   deleteTimezone: function(id) {
     return {
-      type: 'DELETE_TIMEZONE',
+      type: 'DELETE_CITY',
       id: id
     }
-  },
+  }
 
-}
+};
 
 export default actions
