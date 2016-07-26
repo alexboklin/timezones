@@ -11,7 +11,9 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 // TODO: change initialState!
-let initialState = {
+// See: http://redux.js.org/docs/basics/Reducers.html
+// Also see: https://github.com/gaearon/normalizr
+const initialState = {
   cities: []
 };
 
