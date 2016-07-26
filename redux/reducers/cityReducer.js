@@ -6,15 +6,16 @@ function getId(cities) {
     }, -1) + 1;
 }
 
+// TODO: rename into cities so that the rootReducer only uses one name inside
 let cityReducer = (cities = [], action) => {
     switch (action.type) {
         case ADD_CITY:
             return [
                 ...cities,
                 {
-                    cityName: action.payload.text,
-                    enlisted: true,
-                    id: getId(cities)
+                    id: getId(cities),
+                    name: action.payload.name,
+                    enlisted: true                    
                 }
             ];
         case DELETE_CITY:       
