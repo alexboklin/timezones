@@ -6,8 +6,7 @@ function getId(cities) {
     }, -1) + 1;
 }
 
-// TODO: rename into cities so that the rootReducer only uses one name inside
-let cityReducer = (cities = [], action) => {
+let cities = (cities = [], action) => {
     switch (action.type) {
         case ADD_CITY:
             return [
@@ -27,4 +26,4 @@ let cityReducer = (cities = [], action) => {
     }
 };
 
-export default cityReducer
+export default cities
