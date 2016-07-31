@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import App from '../components/App';
 import configureStore from '../redux/store';
 import { Provider } from 'react-redux';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
@@ -19,10 +20,11 @@ const initialState = {
 
 const store = configureStore(initialState);
 
-// TODO: can we put MuiThemeProvider wrapping here instead of App.js?
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('app')
+    <Provider store={store}>
+        <MuiThemeProvider>
+            <App />
+        </MuiThemeProvider>
+    </Provider>,
+    document.getElementById('app')
 );
