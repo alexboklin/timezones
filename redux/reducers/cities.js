@@ -19,7 +19,7 @@ let cities = (cities = [], action) => {
             ];
         case DELETE_CITY:       
             return cities.filter((city) => {
-                return city.id !== action.id;
+                return city.id !== action.payload.id;
             });
         default:
             return cities;

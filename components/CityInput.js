@@ -41,7 +41,10 @@ export default class CityInput extends React.Component {
     };
 
     handleActionTouchTap = () => {
-        console.log("Will delete the last added city!");
+        this.setState({
+            snackBarIsOpen: false
+        });
+        this.props.onRevertSubmit(this.props.cities.length - 1);
     };
 
     handleRequestClose = () => {
