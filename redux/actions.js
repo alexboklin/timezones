@@ -4,7 +4,7 @@ import { ADD_CITY, DELETE_CITY } from './actionTypes';
 export const addCity = (text) => ({
     type: ADD_CITY,
     payload: {
-        cityName: text
+        name: text
     }
 });
 

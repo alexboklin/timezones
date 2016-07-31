@@ -8,7 +8,6 @@ function getId(cities) {
 
 let cities = (cities = [], action) => {
     switch (action.type) {
-        // TODO: name is undefined!
         case ADD_CITY:
             return [
                 ...cities,
