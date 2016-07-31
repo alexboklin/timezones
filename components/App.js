@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import * as actions from '../redux/actions';
 
 // TODO: get rid of return
-const AppStart = ({ cities, actions }) => {
+const App = ({ cities, actions }) => {
     return(
         <div>
             <br/>
@@ -25,10 +25,7 @@ const mapDispatchToProps = (dispatch) => ({
     actions: bindActionCreators(actions, dispatch)
 });
 
-// TODO: App vs AppStart -- resolve
-const App = connect(
+export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(AppStart);
-
-export default App;
+)(App);
