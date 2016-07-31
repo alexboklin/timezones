@@ -23,7 +23,7 @@ const CityList = ({ cities }) => (
     <List className="col-lg-4 text-center">
         {
             cities.map((city) =>
-                <ListItem primaryText={city.name}/>
+                <ListItem key={city.id} primaryText={city.name}/>
             )
         }
     </List>
