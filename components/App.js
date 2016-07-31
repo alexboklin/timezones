@@ -8,7 +8,7 @@ import * as actions from '../redux/actions';
 const App = ({ cities, actions }) => (
     <div>
         <br/>
-        <CityInput onSubmit={actions.addCity} onRevertSubmit={actions.deleteCity} cities={cities}/>
+        <CityInput actions={actions} cities={cities}/>
         <br/>
         <CityList cities={cities}/>
     </div>

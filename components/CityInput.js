@@ -35,7 +35,7 @@ export default class CityInput extends React.Component {
 
             this.handleTouchTap();
 
-            this.props.onSubmit(this.state.inputText);
+            this.props.actions.addCity(this.state.inputText);
         }
         
     };
@@ -44,7 +44,7 @@ export default class CityInput extends React.Component {
         this.setState({
             snackBarIsOpen: false
         });
-        this.props.onRevertSubmit(this.props.cities.length - 1);
+        this.props.actions.deleteCity(this.props.cities.length - 1);
     };
 
     handleRequestClose = () => {
