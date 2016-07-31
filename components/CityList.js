@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import {List, ListItem} from 'material-ui/List';
-import Toggle from 'material-ui/Toggle';
+// import Toggle from 'material-ui/Toggle';
 
 // export default class CityList extends React.Component {
 //     constructor(props) {
@@ -19,7 +19,7 @@ import Toggle from 'material-ui/Toggle';
 //     }
 // };
 
-const CityList = (cities) => (
+const CityList = ({ cities }) => (
     <List className="col-lg-4 text-center">
         {
             cities.map((city) =>

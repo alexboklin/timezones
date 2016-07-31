@@ -19,6 +19,7 @@ const initialState = {
 
 const store = configureStore(initialState);
 
+// TODO: can we put MuiThemeProvider wrapping here instead of App.js?
 ReactDOM.render(
   <Provider store={store}>
     <App />
