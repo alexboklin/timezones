@@ -19,21 +19,22 @@ export default class CityInput extends React.Component {
         });
     };
 
-    handleTouchTap = () => {
-        this.setState({
-            snackBarIsOpen: true
-        });
-    };
+    // handleTouchTap = () => {
+    //     this.setState({
+    //         snackBarIsOpen: true
+    //     });
+    // };
 
     handleSubmit = (event) => {
         // On hitting Enter we add city to the list.
         if (event.keyCode === 13) {
             // TODO: do this in handleChange along with changing inputText?
             this.setState({
+                snackBarIsOpen: true,
                 snackBarMessage: `${event.target.value} added to the list`
             });
 
-            this.handleTouchTap();
+            // this.handleTouchTap();
 
             this.props.actions.addCity(this.state.inputText);
         }

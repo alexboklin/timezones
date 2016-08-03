@@ -1,32 +1,65 @@
 import React, { PropTypes } from 'react';
 import { List } from 'material-ui/List';
 import Chip from 'material-ui/Chip';
+import Snackbar from 'material-ui/Snackbar';
 
 export default class CityList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            //cityList: []
+            snackBarAutoHideDuration: 4000,
+            snackBarMessage: '',
+            snackBarIsOpen: false
         }
     };
 
-    handleRequestDelete = (id) => {
-        this.props.actions.deleteCity(id);
+    handleRequestDelete = (city) => {
+        this.setState({
+            snackBarIsOpen: true,
+            snackBarMessage: `${city.name} removed from the list`
+        });
+        
+        this.props.actions.deleteCity(city.id);
     };
 
+    handleActionTouchTap = () => {
+        console.log("TODO: need a city name to restore it!");
+
+        this.setState({
+            snackBarIsOpen: false
+        });
+        this.props.actions.addCity(name);
+    };
+
+    handleRequestClose = () => {
+        this.setState({
+            snackBarIsOpen: false
+        });
+    };   
+    
     render() {
         return (
-            <List className="text-center">
-                {
-                    this.props.cities.map((city) =>
-                        <Chip key={city.id} onRequestDelete={() => this.handleRequestDelete(city.id)}>
-                            {city.name}
-                        </Chip>
-                    )
-                }
-            </List>
+            <div>
+                <List className="text-center">
+                    {
+                        this.props.cities.map((city) =>
+                            <Chip key={city.id} onRequestDelete={() => this.handleRequestDelete(city)}>
+                                {city.name}
+                            </Chip>
+                        )
+                    }
+                </List>
+                <Snackbar
+                    open={this.state.snackBarIsOpen}
+                    message={this.state.snackBarMessage}
+                    action="undo"
+                    autoHideDuration={this.state.snackBarAutoHideDuration}
+                    onActionTouchTap={this.handleActionTouchTap}
+                    onRequestClose={this.handleRequestClose}
+                />
+            </div>
         )
-    }
+    };
 };
 
 CityList.PropTypes = {
