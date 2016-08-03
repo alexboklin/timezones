@@ -14,7 +14,7 @@ let cities = (cities = [], action) => {
                 {
                     id: getId(cities),
                     name: action.payload.name,
-                    enlisted: true                    
+                    enlisted: true // TODO: do we need this field (ids work just fine)?
                 }
             ];
         case DELETE_CITY:       

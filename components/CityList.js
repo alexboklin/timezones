@@ -7,6 +7,7 @@ export default class CityList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            deletedCity: {},
             snackBarAutoHideDuration: 4000,
             snackBarMessage: '',
             snackBarIsOpen: false
@@ -15,6 +16,7 @@ export default class CityList extends React.Component {
 
     handleRequestDelete = (city) => {
         this.setState({
+            deletedCity: city,
             snackBarIsOpen: true,
             snackBarMessage: `${city.name} removed from the list`
         });
@@ -23,12 +25,12 @@ export default class CityList extends React.Component {
     };
 
     handleActionTouchTap = () => {
-        console.log("TODO: need a city name to restore it!");
+        console.log(this.state.deletedCity.name);
 
         this.setState({
             snackBarIsOpen: false
         });
-        this.props.actions.addCity(name);
+        this.props.actions.addCity(this.state.deletedCity.name);
     };
 
     handleRequestClose = () => {
