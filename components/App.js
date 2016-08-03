@@ -10,7 +10,7 @@ const App = ({ cities, actions }) => (
         <br/>
         <CityInput actions={actions} cities={cities}/>
         <br/>
-        <CityList cities={cities}/>
+        <CityList actions={actions} cities={cities}/>
     </div>
 );
 

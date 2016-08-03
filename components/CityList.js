@@ -1,33 +1,33 @@
 import React, { PropTypes } from 'react';
-import {List, ListItem} from 'material-ui/List';
-// import Toggle from 'material-ui/Toggle';
+import { List } from 'material-ui/List';
+import Chip from 'material-ui/Chip';
 
-// export default class CityList extends React.Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             cityList: []
-//         }
-//     };
-//
-//     render() {
-//         return (
-//             <List className="col-lg-4 text-center">
-//                 <ListItem primaryText="First city" rightToggle={<Toggle/>}/>
-//             </List>
-//         )
-//     }
-// };
-
-const CityList = ({ cities }) => (
-    <List className="col-lg-4 text-center">
-        {
-            cities.map((city) =>
-                <ListItem key={city.id} primaryText={city.name}/>
-            )
+export default class CityList extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            //cityList: []
         }
-    </List>
-);
+    };
+
+    handleRequestDelete = (id) => {
+        this.props.actions.deleteCity(id);
+    };
+
+    render() {
+        return (
+            <List className="text-center">
+                {
+                    this.props.cities.map((city) =>
+                        <Chip key={city.id} onRequestDelete={() => this.handleRequestDelete(city.id)}>
+                            {city.name}
+                        </Chip>
+                    )
+                }
+            </List>
+        )
+    }
+};
 
 CityList.PropTypes = {
     cities: PropTypes.arrayOf(PropTypes.shape({
@@ -36,5 +36,3 @@ CityList.PropTypes = {
         enlisted: PropTypes.bool.isRequired
     }).isRequired).isRequired
 };
-
-export default CityList;
