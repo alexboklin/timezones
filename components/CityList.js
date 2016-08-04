@@ -25,12 +25,11 @@ export default class CityList extends React.Component {
     };
 
     handleActionTouchTap = () => {
-        console.log(this.state.deletedCity.name);
-
         this.setState({
             snackBarIsOpen: false
         });
-        this.props.actions.addCity(this.state.deletedCity.name);
+        this.props.actions.restoreLastDeletedCity(this.state.deletedCity);
+        
     };
 
     handleRequestClose = () => {

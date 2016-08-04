@@ -1,4 +1,4 @@
-import { ADD_CITY, DELETE_CITY } from '../actionTypes';
+import { ADD_CITY, DELETE_CITY, RESTORE_LAST_DELETED_CITY } from '../actionTypes';
 
 function getId(cities) {
     return cities.reduce((maxId, city) => {
@@ -21,6 +21,11 @@ let cities = (cities = [], action) => {
             return cities.filter((city) => {
                 return city.id !== action.payload.id;
             });
+        case RESTORE_LAST_DELETED_CITY:
+            return cities.
+                slice(0, action.payload.city.id)
+                .concat(action.payload.city)
+                .concat(cities.slice(action.payload.city.id));
         default:
             return cities;
     }
