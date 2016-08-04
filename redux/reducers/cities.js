@@ -22,10 +22,15 @@ let cities = (cities = [], action) => {
                 return city.id !== action.payload.id;
             });
         case RESTORE_LAST_DELETED_CITY:
-            return cities.
-                slice(0, action.payload.city.id)
-                .concat(action.payload.city)
-                .concat(cities.slice(action.payload.city.id));
+            return [
+                ...cities.slice(0, action.payload.city.id),
+                action.payload.city,
+                ...cities.slice(action.payload.city.id)
+            ];
+            // return cities.
+            //     slice(0, action.payload.city.id)
+            //     .concat(action.payload.city)
+            //     .concat(cities.slice(action.payload.city.id));
         default:
             return cities;
     }
