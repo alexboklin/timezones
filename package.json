@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "production": "webpack -p",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "test": "mocha --compilers js:babel-register --recursive",
+    "test:watch": "npm test -- --watch"
   },
   "author": "",
   "license": "ISC",
@@ -27,6 +29,7 @@
   },
   "devDependencies": {
     "babel-register": "^6.11.6",
+    "expect": "^1.20.2",
     "mocha": "^3.0.1",
     "webpack-dev-server": "^1.14.1"
   }
