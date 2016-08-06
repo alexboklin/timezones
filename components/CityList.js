@@ -66,7 +66,6 @@ export default class CityList extends React.Component {
 CityList.PropTypes = {
     cities: PropTypes.arrayOf(PropTypes.shape({
         id:PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        enlisted: PropTypes.bool.isRequired
+        name: PropTypes.string.isRequired
     }).isRequired).isRequired
 };

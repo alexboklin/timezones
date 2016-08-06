@@ -8,7 +8,6 @@ let cities = (cities = [], action) => {
                 {
                     id: cities.reduce((maxId, city) => Math.max(city.id, maxId), -1) + 1,
                     name: action.payload.name,
-                    enlisted: true // TODO: do we need this field (ids work just fine)?
                 }
             ];
         case DELETE_CITY:       
