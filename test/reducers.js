@@ -29,7 +29,6 @@ describe('city reducer', () => {
             ]
         )
     });
-    // TODO: sort out the problem with 0, 1, 2 turning to 0, 2 when removing id 1!
     it('should remove the city from the list by id', () => {
         const cityListBefore = [
             {
@@ -43,6 +42,10 @@ describe('city reducer', () => {
             {
                 id: 2,
                 name: 'Frisco'
+            },
+            {
+                id: 3,
+                name: 'The Hub'
             }
         ];
         Object.freeze(cityListBefore);
@@ -64,6 +67,10 @@ describe('city reducer', () => {
             {
                 id: 1,
                 name: 'Frisco'
+            },
+            {
+                id: 2,
+                name: 'The Hub'
             }
         ])
     });
@@ -74,8 +81,12 @@ describe('city reducer', () => {
                 name: 'NYC'
             },
             {
-                id: 2,
+                id: 1,
                 name: 'Frisco'
+            },
+            {
+                id: 2,
+                name: 'The Hub'
             }
         ];
         Object.freeze(cityListBefore);
@@ -105,6 +116,10 @@ describe('city reducer', () => {
                 {
                     id: 2,
                     name: 'Frisco'
+                },
+                {
+                    id: 3,
+                    name: 'The Hub'
                 }
             ]
         )

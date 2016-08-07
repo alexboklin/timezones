@@ -7,23 +7,29 @@ let cities = (cities = [], action) => {
                 ...cities,
                 {
                     id: cities.reduce((maxId, city) => Math.max(city.id, maxId), -1) + 1,
-                    name: action.payload.name,
+                    name: action.payload.name
                 }
             ];
         case DELETE_CITY:       
-            return cities.filter((city) => {
-                return city.id !== action.payload.id;
-            });
+            return [
+                ...cities.slice(0, action.payload.id),
+                ...cities.slice(action.payload.id + 1).map(
+                    (city) => ({
+                        id: city.id - 1,
+                        name: city.name
+                    }))
+            ];
         case RESTORE_LAST_DELETED_CITY:
             return [
                 ...cities.slice(0, action.payload.city.id),
                 action.payload.city,
-                ...cities.slice(action.payload.city.id)
+                ...cities.slice(action.payload.city.id).map(
+                    (city) => ({
+                        id: city.id + 1,
+                        name: city.name
+                    })
+                )
             ];
-            // return cities.
-            //     slice(0, action.payload.city.id)
-            //     .concat(action.payload.city)
-            //     .concat(cities.slice(action.payload.city.id));
         default:
             return cities;
     }
