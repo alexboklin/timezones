@@ -1,3 +1,4 @@
-language: javascript
-install: npm install
-script: npm test
+#See https://docs.travis-ci.com/user/languages/javascript-with-nodejs for more details.
+language: node_js
+install: npm install #should be run by default, but let's be explicit.
+script: npm test #should be run by default, but let's be explicit.
