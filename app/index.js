@@ -21,6 +21,8 @@ const initialState = {
 const store = configureStore(initialState);
 
 ReactDOM.render(
+    // <Provider store> Makes the Redux store available to the connect()
+    // calls in the component hierarchy below.
     <Provider store={store}>
         <MuiThemeProvider>
             <App />
