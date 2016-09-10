@@ -1,1 +1,1 @@
-[![Build Status](https://travis-ci.org/alexboklin/timezones.svg?branch=master)](https://travis-ci.org/alexboklin/timezones)
+[![Build Status](https://travis-ci.org/bapjiws/timezones_v.svg?branch=master)](https://travis-ci.org/bapjiws/timezones_v)
