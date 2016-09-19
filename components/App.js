@@ -23,8 +23,6 @@ const mapStateToProps = (state) => ({
     cities: state.cities
 });
 
-// Returns an object with the same function names, but with every action creator 
-// wrapped into a dispatch call so they may be invoked directly.
 // bindActionCreators turns an object whose values are action creators,
 // into an object with the same keys, but with every action creator wrapped into a dispatch call
 // so they may be invoked directly.
