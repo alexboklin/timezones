@@ -3,7 +3,7 @@ import CityInput from './CityInput';
 import CityList from './CityList';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actions from '../redux/actions';
+import * as actions from '../redux/actions/cities';
 
 // cities comes from mapStateToProps; actions come from mapDispatchToProps.
 // That is, we inject the "cities" slice of the state (and listen to it)

@@ -1,6 +1,6 @@
 import expect from 'expect';
 import cities from '../redux/reducers/cities';
-import { ADD_CITY, DELETE_CITY, RESTORE_LAST_DELETED_CITY } from '../redux/actionTypes';
+import { ADD_CITY, DELETE_CITY, RESTORE_LAST_DELETED_CITY } from '../redux/actions/actionTypes';
 
 describe('city reducer', () => {
     it('should return the initial state', () => {

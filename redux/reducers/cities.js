@@ -2,7 +2,7 @@ import {
     ADD_CITY,
     DELETE_CITY,
     RESTORE_LAST_DELETED_CITY
-} from '../actionTypes';
+} from '../actions/actionTypes';
 
 let cities = (cities = [], action) => {
     switch (action.type) {
