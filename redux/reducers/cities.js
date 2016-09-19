@@ -1,4 +1,8 @@
-import { ADD_CITY, DELETE_CITY, RESTORE_LAST_DELETED_CITY } from '../actionTypes';
+import {
+    ADD_CITY,
+    DELETE_CITY,
+    RESTORE_LAST_DELETED_CITY
+} from '../actionTypes';
 
 let cities = (cities = [], action) => {
     switch (action.type) {
@@ -14,17 +18,18 @@ let cities = (cities = [], action) => {
             return [
                 ...cities.slice(0, action.payload.id),
                 ...cities.slice(action.payload.id + 1).map(
-                    (city) => ({
+                    city => ({
                         id: city.id - 1,
                         name: city.name
-                    }))
+                    })
+                )
             ];
         case RESTORE_LAST_DELETED_CITY:
             return [
                 ...cities.slice(0, action.payload.city.id),
                 action.payload.city,
                 ...cities.slice(action.payload.city.id).map(
-                    (city) => ({
+                    city => ({
                         id: city.id + 1,
                         name: city.name
                     })
