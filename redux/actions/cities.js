@@ -8,21 +8,21 @@ import {
 export const addCity = name => ({
     type: ADD_CITY,
     payload: {
-        name: name
+        name
     }
 });
 
 export const deleteCity = id => ({
     type: DELETE_CITY,
     payload: {
-        id: id
+        id
     }
 });
 
 export const restoreLastDeletedCity = city => ({
     type: RESTORE_LAST_DELETED_CITY,
     payload: {
-        city: city
+        city
     }
 });
 
