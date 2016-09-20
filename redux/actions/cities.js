@@ -1,7 +1,8 @@
 import {
     ADD_CITY,
     DELETE_CITY,
-    RESTORE_LAST_DELETED_CITY
+    RESTORE_LAST_DELETED_CITY,
+    ASK_FOR_CITY_SUGGESTIONS
 } from './actionTypes';
 
 // Wrap returned object in parens so it's interpreted as an object expression and not a block of code.
@@ -26,4 +27,9 @@ export const restoreLastDeletedCity = city => ({
     }
 });
 
-
+export const askForCitySuggestions = input => ({
+    type: ASK_FOR_CITY_SUGGESTIONS,
+    payload: {
+        input
+    }
+});
