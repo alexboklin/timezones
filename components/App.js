@@ -19,7 +19,7 @@ const App = ({ cities, actions }) => (
 
 // The component will subscribe to Redux store updates.
 // Any time it updates, mapStateToProps will be called.
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     cities: state.cities
 });
 
@@ -27,7 +27,7 @@ const mapStateToProps = (state) => ({
 // into an object with the same keys, but with every action creator wrapped into a dispatch call
 // so they may be invoked directly.
 // dispatch is injected by react-redux, so we can do this: let { dispatch } = this.props
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(actions, dispatch)
 });
 

@@ -41,7 +41,7 @@ export default class CityList extends React.Component {
     render() {
         return (
             <div>
-                <List className="text-center">
+                <List>
                     {
                         this.props.cities.map((city) =>
                             <Chip key={city.id} onRequestDelete={() => this.handleRequestDelete(city)}>

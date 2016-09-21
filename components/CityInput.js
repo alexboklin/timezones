@@ -1,46 +1,20 @@
 import React from 'react';
-import TextField from 'material-ui/TextField';
+import AutoComplete from 'material-ui/AutoComplete';
 import Snackbar from 'material-ui/Snackbar';
 
 export default class CityInput extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            inputText: '',
+            dataSource: [],
+            inputText: '', // TODO: remove. chosenRequest + searchText handle it nicely
             snackBarAutoHideDuration: 4000,
             snackBarMessage: '',
             snackBarIsOpen: false
         }
     };
 
-    handleChange = (event) => {
-        this.setState({
-            inputText: event.target.value // + snackBarMessage: `${event.target.value} added to the list`
-        });
-    };
-
-    // handleTouchTap = () => {
-    //     this.setState({
-    //         snackBarIsOpen: true
-    //     });
-    // };
-
-    handleSubmit = (event) => {
-        // On hitting Enter we add city to the list.
-        if (event.keyCode === 13) {
-            // TODO: do this in handleChange along with changing inputText?
-            this.setState({
-                snackBarIsOpen: true,
-                snackBarMessage: `${event.target.value} added to the list`
-            });
-
-            // this.handleTouchTap();
-
-            this.props.actions.addCity(this.state.inputText);
-        }
-        
-    };
-
+    // Snackbar handlers
     handleActionTouchTap = () => {
         this.setState({
             snackBarIsOpen: false
@@ -54,14 +28,38 @@ export default class CityInput extends React.Component {
         });
     };
 
+    // AutoComplete handlers
+    handleUpdateInput = (searchText, dataSource) => {
+        console.log("searchText: ", searchText);
+        console.log("dataSource: ", dataSource);
+
+        // TODO: send a request to the server to fetch city suggestions for dataSource
+
+        this.setState({
+            inputText: searchText
+        });
+    };
+
+    handleNewRequest = (chosenRequest, index) => {
+        console.log("chosenRequest", chosenRequest);
+        console.log("index", index);
+
+        this.setState({
+            snackBarIsOpen: true,
+            snackBarMessage: `${chosenRequest} added to the list`
+        });
+
+        this.props.actions.addCity(this.state.inputText);
+    };
+
     render() {
         return (
             <div className="text-center">
-                <TextField
+                <AutoComplete
                     hintText="Type in the city to search for"
-                    value={this.state.inputText}
-                    onChange={this.handleChange}
-                    onKeyDown={this.handleSubmit}
+                    dataSource={this.state.dataSource}
+                    onNewRequest={this.handleNewRequest}
+                    onUpdateInput={this.handleUpdateInput}
                 />
                 <Snackbar
                     open={this.state.snackBarIsOpen}
