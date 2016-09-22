@@ -3,6 +3,7 @@ import rootReducer from './reducers';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 
+// TODO: check http://redux.js.org/docs/advanced/AsyncActions.html#indexjs
 let finalCreateStore = compose(
   applyMiddleware(
       logger(),
@@ -10,6 +11,6 @@ let finalCreateStore = compose(
   )
 )(createStore);
 
-export default function configureStore(initialState = { cities: [] }) {
+export default function configureStore(initialState = {}) { //  cities: []
   return finalCreateStore(rootReducer, initialState)
 };

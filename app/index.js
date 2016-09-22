@@ -15,7 +15,9 @@ injectTapEventPlugin();
 // See: http://redux.js.org/docs/basics/Reducers.html
 // Also see: https://github.com/gaearon/normalizr
 const initialState = {
-  cities: []
+    cities: [],
+    citySuggestions: [],
+    // TODO: currentCityInput for form validation?
 };
 
 const store = configureStore(initialState);

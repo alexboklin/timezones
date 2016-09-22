@@ -36,7 +36,7 @@ export const fetchCitySuggestions = input => {
 
         return axios.get(`http://localhost:8888/api/city?name=${input}`)
             .then(function (response) {
-                console.log("response: ", response); // TODO dispatch receiveCitySuggestions
+                console.log("response: ", response.data); // TODO dispatch receiveCitySuggestions
             })
             .catch(function (error) {
                 if (error.response) {
