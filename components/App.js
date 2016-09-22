@@ -5,13 +5,14 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../redux/actions/cities';
 
+// TODO: update comments
 // cities comes from mapStateToProps; actions come from mapDispatchToProps.
 // That is, we inject the "cities" slice of the state (and listen to it)
 // and all action creators as actions into App.
-const App = ({ cities, actions }) => (
+const App = ({ cities, citySuggestions, actions }) => (
     <div>
         <br/>
-        <CityInput actions={actions} cities={cities}/>
+        <CityInput actions={actions} cities={cities} citySuggestions={citySuggestions}/>
         <br/>
         <CityList actions={actions} cities={cities}/>
     </div>
@@ -20,7 +21,8 @@ const App = ({ cities, actions }) => (
 // The component will subscribe to Redux store updates.
 // Any time it updates, mapStateToProps will be called.
 const mapStateToProps = state => ({
-    cities: state.cities
+    cities: state.cities,
+    citySuggestions: state.citySuggestions
 });
 
 // bindActionCreators turns an object whose values are action creators,

@@ -6,12 +6,16 @@ export default class CityInput extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            dataSource: [],
+            // dataSource: [], // TODO: pass via props and componentWillReceiveProps
             inputText: '', // TODO: remove. chosenRequest + searchText handle it nicely
             snackBarAutoHideDuration: 4000,
             snackBarMessage: '',
             snackBarIsOpen: false
         }
+    };
+
+    componentWillReceiveProps(nextProps) {
+        console.log("nextProps: ", nextProps);
     };
 
     // Snackbar handlers
@@ -29,20 +33,21 @@ export default class CityInput extends React.Component {
     };
 
     // AutoComplete handlers
+    // TODO: update state and pass stuff down via componentWillReceiveProps
     handleUpdateInput = (searchText, dataSource) => {
-        console.log("searchText: ", searchText);
-        console.log("dataSource: ", dataSource);
+        // console.log("searchText: ", searchText);
+        // console.log("dataSource: ", dataSource);
 
         // TODO: send a request to the server to fetch city suggestions for dataSource
 
         this.setState({
-            inputText: searchText
+            inputText: searchText // TODO: remove. chosenRequest + searchText handle it nicely
         });
     };
 
     handleNewRequest = (chosenRequest, index) => {
-        console.log("chosenRequest", chosenRequest);
-        console.log("index", index);
+        // console.log("chosenRequest", chosenRequest);
+        // console.log("index", index);
 
         this.setState({
             snackBarIsOpen: true,
@@ -54,12 +59,16 @@ export default class CityInput extends React.Component {
         this.props.actions.fetchCitySuggestions(chosenRequest);
     };
 
+    // this.state.dataSource vs. this.props.citySuggestions
+
     render() {
+        const dataSource = ['one', 'two', 'three'];
+
         return (
             <div className="text-center">
                 <AutoComplete
                     hintText="Type in the city to search for"
-                    dataSource={this.state.dataSource}
+                    dataSource={dataSource}
                     onNewRequest={this.handleNewRequest}
                     onUpdateInput={this.handleUpdateInput}
                 />
