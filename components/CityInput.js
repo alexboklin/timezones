@@ -50,6 +50,8 @@ export default class CityInput extends React.Component {
         });
 
         this.props.actions.addCity(this.state.inputText);
+
+        this.props.actions.fetchCitySuggestions(chosenRequest);
     };
 
     render() {
