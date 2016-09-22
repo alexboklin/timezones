@@ -34,14 +34,7 @@ export const fetchCitySuggestions = input => {
     return dispatch => {
         // dispatch(requestCitySuggestions(input));
 
-        // , {
-        //     headers: {
-        //         "Access-Control-Allow-Origin": "*",
-        //         // "Access-Control-Allow-Headers": "Origin" // "access-control-allow-origin, access-control-allow-headers"
-        //     }
-        // }
-
-        return axios.get('http://localhost:8888/api/city?name=aliaf')
+        return axios.get(`http://localhost:8888/api/city?name=${input}`)
             .then(function (response) {
                 console.log("response: ", response); // TODO dispatch receiveCitySuggestions
             })
