@@ -16,6 +16,7 @@ export default class CityInput extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         console.log("nextProps: ", nextProps);
+        // TODO: will probably need to update this.state.dataSource here using nextProps.citySuggestions
     };
 
     // Snackbar handlers
@@ -23,7 +24,7 @@ export default class CityInput extends React.Component {
         this.setState({
             snackBarIsOpen: false
         });
-        this.props.actions.deleteCity(this.props.cities.length - 1);
+        this.props.cityActions.deleteCity(this.props.cities.length - 1);
     };
 
     handleRequestClose = () => {
@@ -38,11 +39,11 @@ export default class CityInput extends React.Component {
         // console.log("searchText: ", searchText);
         // console.log("dataSource: ", dataSource);
 
-        // TODO: send a request to the server to fetch city suggestions for dataSource
+        // this.setState({
+        //     inputText: searchText // TODO: remove. chosenRequest + searchText handle it nicely
+        // });
 
-        this.setState({
-            inputText: searchText // TODO: remove. chosenRequest + searchText handle it nicely
-        });
+        this.props.citySuggentionActions.fetchCitySuggestions(searchText);
     };
 
     handleNewRequest = (chosenRequest, index) => {
@@ -54,21 +55,21 @@ export default class CityInput extends React.Component {
             snackBarMessage: `${chosenRequest} added to the list`
         });
 
-        this.props.actions.addCity(this.state.inputText);
+        this.props.cityActions.addCity(chosenRequest);
 
-        this.props.actions.fetchCitySuggestions(chosenRequest);
+
     };
 
     // this.state.dataSource vs. this.props.citySuggestions
 
     render() {
-        const dataSource = ['one', 'two', 'three'];
+        // const dataSource = ['one', 'two', 'three'];
 
         return (
             <div className="text-center">
                 <AutoComplete
                     hintText="Type in the city to search for"
-                    dataSource={dataSource}
+                    dataSource={this.props.citySuggestions}
                     onNewRequest={this.handleNewRequest}
                     onUpdateInput={this.handleUpdateInput}
                 />

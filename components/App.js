@@ -3,18 +3,25 @@ import CityInput from './CityInput';
 import CityList from './CityList';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actions from '../redux/actions/cities';
+import * as cityActions from '../redux/actions/cities';
+import * as citySuggentionActions from '../redux/actions/citySuggestions';
 
 // TODO: update comments
 // cities comes from mapStateToProps; actions come from mapDispatchToProps.
 // That is, we inject the "cities" slice of the state (and listen to it)
 // and all action creators as actions into App.
-const App = ({ cities, citySuggestions, actions }) => (
+const App = ({ cities, citySuggestions, cityActions, citySuggentionActions }) => (
     <div>
         <br/>
-        <CityInput actions={actions} cities={cities} citySuggestions={citySuggestions}/>
+        <CityInput
+            cityActions={cityActions}
+            citySuggentionActions={citySuggentionActions}
+            cities={cities}
+            citySuggestions={citySuggestions}/>
         <br/>
-        <CityList actions={actions} cities={cities}/>
+        <CityList
+            cityActions={cityActions}
+            cities={cities}/>
     </div>
 );
 
@@ -30,7 +37,8 @@ const mapStateToProps = state => ({
 // so they may be invoked directly.
 // dispatch is injected by react-redux, so we can do this: let { dispatch } = this.props
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(actions, dispatch)
+    cityActions: bindActionCreators(cityActions, dispatch),
+    citySuggentionActions: bindActionCreators(citySuggentionActions, dispatch),
 });
 
 // connect connects a React component to a Redux store and returns a React component class that injects

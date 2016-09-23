@@ -4,7 +4,7 @@ import {
     RESTORE_LAST_DELETED_CITY
 } from '../actions/actionTypes';
 
-export let cities = (cities = [], action) => {
+let cities = (cities = [], action) => {
     switch (action.type) {
         case ADD_CITY:
             return [
@@ -40,10 +40,4 @@ export let cities = (cities = [], action) => {
     }
 };
 
-export let citySuggestions = (citySuggestions = [], action) => {
-    switch (action.type) {
-
-        default:
-            return citySuggestions;
-    }
-};
+export default cities;

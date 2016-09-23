@@ -21,14 +21,14 @@ export default class CityList extends React.Component {
             snackBarMessage: `${city.name} removed from the list`
         });
         
-        this.props.actions.deleteCity(city.id);
+        this.props.cityActions.deleteCity(city.id);
     };
 
     handleActionTouchTap = () => {
         this.setState({
             snackBarIsOpen: false
         });
-        this.props.actions.restoreLastDeletedCity(this.state.deletedCity);
+        this.props.cityActions.restoreLastDeletedCity(this.state.deletedCity);
         
     };
 
