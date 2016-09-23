@@ -6,17 +6,10 @@ export default class CityInput extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            // dataSource: [], // TODO: pass via props and componentWillReceiveProps
-            inputText: '', // TODO: remove. chosenRequest + searchText handle it nicely
             snackBarAutoHideDuration: 4000,
             snackBarMessage: '',
             snackBarIsOpen: false
         }
-    };
-
-    componentWillReceiveProps(nextProps) {
-        console.log("nextProps: ", nextProps);
-        // TODO: will probably need to update this.state.dataSource here using nextProps.citySuggestions
     };
 
     // Snackbar handlers
@@ -39,10 +32,6 @@ export default class CityInput extends React.Component {
         // console.log("searchText: ", searchText);
         // console.log("dataSource: ", dataSource);
 
-        // this.setState({
-        //     inputText: searchText // TODO: remove. chosenRequest + searchText handle it nicely
-        // });
-
         this.props.citySuggentionActions.fetchCitySuggestions(searchText);
     };
 
@@ -56,20 +45,14 @@ export default class CityInput extends React.Component {
         });
 
         this.props.cityActions.addCity(chosenRequest);
-
-
     };
 
-    // this.state.dataSource vs. this.props.citySuggestions
-
     render() {
-        // const dataSource = ['one', 'two', 'three'];
-
         return (
             <div className="text-center">
                 <AutoComplete
                     hintText="Type in the city to search for"
-                    dataSource={this.props.citySuggestions}
+                    dataSource={this.props.citySuggestions.map(suggestion => suggestion.text)}
                     onNewRequest={this.handleNewRequest}
                     onUpdateInput={this.handleUpdateInput}
                 />
