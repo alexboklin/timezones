@@ -17,9 +17,9 @@ let citySuggestions = (citySuggestions = [], action) => {
             console.log("action.payload.citySuggestions: ", action.payload.citySuggestions);
 
             return [
-                ...citySuggestions,
-                ...action.payload.citySuggestions.map( ({ id, text }) => { id, text } )
-            ]
+                // ...citySuggestions,
+                ...action.payload.citySuggestions.map(({ id, text }) => ({id, text}))
+            ];
 
 
         default:
