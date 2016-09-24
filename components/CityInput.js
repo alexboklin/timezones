@@ -51,7 +51,8 @@ export default class CityInput extends React.Component {
         return (
             <div className="text-center">
                 <AutoComplete
-                    hintText="Type in the city to search for"
+                    filter={AutoComplete.caseInsensitiveFilter}
+                    floatingLabelText="Type the city -- case insensitive"
                     dataSource={this.props.citySuggestions.map(suggestion => suggestion.text)}
                     onNewRequest={this.handleNewRequest}
                     onUpdateInput={this.handleUpdateInput}
