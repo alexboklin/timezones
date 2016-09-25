@@ -1,7 +1,7 @@
 import {
     REQUEST_CITY_SUGGESTIONS,
     RECEIVE_CITY_SUGGESTIONS
-} from './actionTypes';
+} from '../actionTypes';
 
 import axios from 'axios';
 
@@ -33,6 +33,7 @@ export const fetchCitySuggestions = input => {
 
 };
 
+// TODO: will be responsible for the "currentCityInput" slice of the state
 let requestCitySuggestions = input => ({
     type: REQUEST_CITY_SUGGESTIONS,
     payload: {

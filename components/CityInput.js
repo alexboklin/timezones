@@ -17,7 +17,7 @@ export default class CityInput extends React.Component {
         this.setState({
             snackBarIsOpen: false
         });
-        this.props.cityActions.deleteCity(this.props.cities.length - 1);
+        this.props.cityListActions.deleteCity(this.props.cityList.length - 1);
     };
 
     handleRequestClose = () => {
@@ -32,7 +32,7 @@ export default class CityInput extends React.Component {
         // console.log("searchText: ", searchText);
         // console.log("dataSource: ", dataSource);
 
-        this.props.citySuggentionActions.fetchCitySuggestions(searchText);
+        this.props.citySuggestionsActions.fetchCitySuggestions(searchText);
     };
 
     handleNewRequest = (chosenRequest, index) => {
@@ -44,7 +44,7 @@ export default class CityInput extends React.Component {
             snackBarMessage: `${chosenRequest} added to the list`
         });
 
-        this.props.cityActions.addCity(chosenRequest);
+        this.props.cityListActions.addCity(chosenRequest);
     };
 
     render() {

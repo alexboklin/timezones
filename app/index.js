@@ -11,13 +11,12 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
 
-// TODO: change initialState!
 // See: http://redux.js.org/docs/basics/Reducers.html
 // Also see: https://github.com/gaearon/normalizr
 const initialState = {
-    cities: [],
+    cityList: [],
     citySuggestions: [],
-    // TODO: currentCityInput for form validation?
+    // currentCityInput: '' // TODO: currentCityInput for form validation?
 };
 
 const store = configureStore(initialState);

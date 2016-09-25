@@ -1,11 +1,11 @@
 import expect from 'expect';
-import cities from '../redux/reducers/cities';
-import { ADD_CITY, DELETE_CITY, RESTORE_LAST_DELETED_CITY } from '../redux/actions/actionTypes';
+import cityListReducers from '../../../redux/reducers/cities/list';
+import { ADD_CITY, DELETE_CITY, RESTORE_LAST_DELETED_CITY } from '../../../redux/actions/actionTypes';
 
-describe('city reducer', () => {
+describe('city list reducers', () => {
     it('should return the initial state', () => {
         expect(
-            cities(undefined, {})
+            cityListReducers(undefined, {})
         ).toEqual(
             []
         )
@@ -14,7 +14,7 @@ describe('city reducer', () => {
         const cityListBefore = [];
         Object.freeze(cityListBefore);
         expect(
-            cities(cityListBefore, {
+            cityListReducers(cityListBefore, {
                 type: ADD_CITY,
                 payload: {
                     name: 'NYC'
@@ -50,7 +50,7 @@ describe('city reducer', () => {
         ];
         Object.freeze(cityListBefore);
         expect(
-            cities(
+            cityListReducers(
                 cityListBefore,
                 {
                     type: DELETE_CITY,
@@ -91,7 +91,7 @@ describe('city reducer', () => {
         ];
         Object.freeze(cityListBefore);
         expect(
-            cities(
+            cityListReducers(
                 cityListBefore,
                 {
                     type: RESTORE_LAST_DELETED_CITY,

@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import cities from './cities';
-import citySuggestions from './citySuggestions';
+import cityList from './cities/list';
+import citySuggestions from './cities/suggestions';
 
 const rootReducer = combineReducers({
-  cities,
+  cityList,
   citySuggestions
 });
 

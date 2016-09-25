@@ -1,7 +1,7 @@
 import {
     REQUEST_CITY_SUGGESTIONS,
     RECEIVE_CITY_SUGGESTIONS
-} from '../actions/actionTypes';
+} from '../../actions/actionTypes';
 
 let citySuggestions = (citySuggestions = [], action) => {
     switch (action.type) {

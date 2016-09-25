@@ -7,7 +7,7 @@ export default class CityList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            deletedCity: {},
+            deletedCity: {}, // TODO: make this a part of the state?
             snackBarAutoHideDuration: 4000,
             snackBarMessage: '',
             snackBarIsOpen: false
@@ -21,14 +21,14 @@ export default class CityList extends React.Component {
             snackBarMessage: `${city.name} removed from the list`
         });
         
-        this.props.cityActions.deleteCity(city.id);
+        this.props.cityListActions.deleteCity(city.id);
     };
 
     handleActionTouchTap = () => {
         this.setState({
             snackBarIsOpen: false
         });
-        this.props.cityActions.restoreLastDeletedCity(this.state.deletedCity);
+        this.props.cityListActions.restoreLastDeletedCity(this.state.deletedCity);
         
     };
 
@@ -43,7 +43,7 @@ export default class CityList extends React.Component {
             <div>
                 <List>
                     {
-                        this.props.cities.map((city) =>
+                        this.props.cityList.map((city) =>
                             <Chip key={city.id} onRequestDelete={() => this.handleRequestDelete(city)}>
                                 {city.name}
                             </Chip>
