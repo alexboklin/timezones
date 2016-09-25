@@ -11,6 +11,6 @@ let finalCreateStore = compose(
   )
 )(createStore);
 
-export default function configureStore(initialState = {}) { //  cities: []
+export default function configureStore(initialState = {}) {
   return finalCreateStore(rootReducer, initialState)
 };
