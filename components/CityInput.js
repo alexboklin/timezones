@@ -29,22 +29,22 @@ export default class CityInput extends React.Component {
     // AutoComplete handlers
     // TODO: update state and pass stuff down via componentWillReceiveProps
     handleUpdateInput = (searchText, dataSource) => {
-        // console.log("searchText: ", searchText);
-        // console.log("dataSource: ", dataSource);
+        console.log("searchText: ", searchText);
+        console.log("dataSource: ", dataSource);
 
         this.props.citySuggestionsActions.fetchCitySuggestions(searchText);
     };
 
     handleNewRequest = (chosenRequest, index) => {
-        // console.log("chosenRequest", chosenRequest);
-        // console.log("index", index);
+        console.log("chosenRequest", chosenRequest);
+        console.log("index", index);
 
         this.setState({
             snackBarIsOpen: true,
             snackBarMessage: `${chosenRequest} added to the list`
         });
 
-        this.props.cityListActions.addCity(chosenRequest);
+        this.props.cityListActions.fetchCityAndItsTime(this.props.citySuggestions[index].id);   //addCity(chosenRequest);
     };
 
     render() {

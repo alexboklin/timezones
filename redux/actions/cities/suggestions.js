@@ -11,11 +11,11 @@ export const fetchCitySuggestions = input => {
         // dispatch(requestCitySuggestions(input));
 
         return axios.get(`http://localhost:8888/api/city?name=${input}`)
-            .then(function (response) {
-                console.log("response: ", response.data);
+            .then(response => {
+                console.log("response: ", response.data); //TODO: remove
                 dispatch(receiveCitySuggestions(response.data));
             })
-            .catch(function (error) {
+            .catch(error => {
                 if (error.response) {
                     // The request was made, but the server responded with a status code
                     // that falls out of the range of 2xx
