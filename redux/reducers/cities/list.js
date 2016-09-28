@@ -10,27 +10,27 @@ let cityList = (cityList = [], action) => {
             return [
                 ...cityList,
                 {
-                    id: cityList.reduce((maxId, city) => Math.max(city.id, maxId), -1) + 1,
-                    name: action.payload.name
+                    place: cityList.reduce((maxId, city) => Math.max(city.place, maxId), -1) + 1,
+                    nameAndCountry: action.payload.nameAndCountry
                 }
             ];
         case DELETE_CITY:       
             return [
-                ...cityList.slice(0, action.payload.id),
-                ...cityList.slice(action.payload.id + 1).map(
+                ...cityList.slice(0, action.payload.place),
+                ...cityList.slice(action.payload.place + 1).map(
                     city => ({
-                        id: city.id - 1,
+                        place: city.place - 1,
                         name: city.name
                     })
                 )
             ];
         case RESTORE_LAST_DELETED_CITY:
             return [
-                ...cityList.slice(0, action.payload.city.id),
+                ...cityList.slice(0, action.payload.city.place),
                 action.payload.city,
-                ...cityList.slice(action.payload.city.id).map(
+                ...cityList.slice(action.payload.city.place).map(
                     city => ({
-                        id: city.id + 1,
+                        place: city.place + 1,
                         name: city.name
                     })
                 )
