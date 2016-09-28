@@ -18,10 +18,10 @@ export default class CityList extends React.Component {
         this.setState({
             deletedCity: city,
             snackBarIsOpen: true,
-            snackBarMessage: `${city.name} removed from the list`
+            snackBarMessage: `${city.nameAndCountry} removed from the list`
         });
         
-        this.props.cityListActions.deleteCity(city.id);
+        this.props.cityListActions.deleteCity(city.place);
     };
 
     handleActionTouchTap = () => {

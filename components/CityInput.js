@@ -39,6 +39,7 @@ export default class CityInput extends React.Component {
         console.log("chosenRequest", chosenRequest);
         console.log("index", index);
 
+        // TODO: should fire only when all async actions are done!
         this.setState({
             snackBarIsOpen: true,
             snackBarMessage: `${chosenRequest} added to the list`

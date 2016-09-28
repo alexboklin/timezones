@@ -20,7 +20,7 @@ let cityList = (cityList = [], action) => {
                 ...cityList.slice(action.payload.place + 1).map(
                     city => ({
                         place: city.place - 1,
-                        name: city.name
+                        nameAndCountry: city.nameAndCountry
                     })
                 )
             ];
@@ -31,7 +31,7 @@ let cityList = (cityList = [], action) => {
                 ...cityList.slice(action.payload.city.place).map(
                     city => ({
                         place: city.place + 1,
-                        name: city.name
+                        nameAndCountry: city.nameAndCountry
                     })
                 )
             ];
