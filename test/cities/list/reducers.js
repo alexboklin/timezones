@@ -17,35 +17,35 @@ describe('city list reducers', () => {
             cityListReducers(cityListBefore, {
                 type: ADD_CITY,
                 payload: {
-                    name: 'NYC'
+                    nameAndCountry: 'NYC'
                 }
             })
         ).toEqual(
             [
                 {
-                    id: 0,
-                    name: 'NYC'
+                    place: 0,
+                    nameAndCountry: 'NYC'
                 }
             ]
         )
     });
-    it('should remove the city from the list by id', () => {
+    it('should remove the city from the list by its place', () => {
         const cityListBefore = [
             {
-                id: 0,
-                name: 'NYC'
+                place: 0,
+                nameAndCountry: 'NYC'
             },
             {
-                id: 1,
-                name: 'LA'
+                place: 1,
+                nameAndCountry: 'LA'
             },
             {
-                id: 2,
-                name: 'Frisco'
+                place: 2,
+                nameAndCountry: 'Frisco'
             },
             {
-                id: 3,
-                name: 'The Hub'
+                place: 3,
+                nameAndCountry: 'The Hub'
             }
         ];
         Object.freeze(cityListBefore);
@@ -55,38 +55,38 @@ describe('city list reducers', () => {
                 {
                     type: DELETE_CITY,
                     payload: {
-                        id: 1
+                        place: 1
                     }
                 }
             )
         ).toEqual([
             {
-                id: 0,
-                name: 'NYC'
+                place: 0,
+                nameAndCountry: 'NYC'
             },
             {
-                id: 1,
-                name: 'Frisco'
+                place: 1,
+                nameAndCountry: 'Frisco'
             },
             {
-                id: 2,
-                name: 'The Hub'
+                place: 2,
+                nameAndCountry: 'The Hub'
             }
         ])
     });
     it('should restore the last deleted city', () => {
         const cityListBefore = [
             {
-                id: 0,
-                name: 'NYC'
+                place: 0,
+                nameAndCountry: 'NYC'
             },
             {
-                id: 1,
-                name: 'Frisco'
+                place: 1,
+                nameAndCountry: 'Frisco'
             },
             {
-                id: 2,
-                name: 'The Hub'
+                place: 2,
+                nameAndCountry: 'The Hub'
             }
         ];
         Object.freeze(cityListBefore);
@@ -97,8 +97,8 @@ describe('city list reducers', () => {
                     type: RESTORE_LAST_DELETED_CITY,
                     payload: {
                         city: {
-                            id: 1,
-                            name: 'LA'
+                            place: 1,
+                            nameAndCountry: 'LA'
                         }
                     }
                 }
@@ -106,20 +106,20 @@ describe('city list reducers', () => {
         ).toEqual(
             [
                 {
-                    id: 0,
-                    name: 'NYC'
+                    place: 0,
+                    nameAndCountry: 'NYC'
                 },
                 {
-                    id: 1,
-                    name: 'LA'
+                    place: 1,
+                    nameAndCountry: 'LA'
                 },
                 {
-                    id: 2,
-                    name: 'Frisco'
+                    place: 2,
+                    nameAndCountry: 'Frisco'
                 },
                 {
-                    id: 3,
-                    name: 'The Hub'
+                    place: 3,
+                    nameAndCountry: 'The Hub'
                 }
             ]
         )

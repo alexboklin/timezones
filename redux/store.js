@@ -4,6 +4,7 @@ import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 
 // TODO: check http://redux.js.org/docs/advanced/AsyncActions.html#indexjs
+// TODO: check https://github.com/gaearon/redux-thunk#installation
 let finalCreateStore = compose(
   applyMiddleware(
       logger(),
