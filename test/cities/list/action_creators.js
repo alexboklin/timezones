@@ -12,7 +12,7 @@ describe('city list actions', () => {
                 nameAndCountry: 'NYC, USA'
             }
         };
-        expect(cityListActions.addCity(cityAccentName, country)).toEqual(expectedAction)
+        expect(cityListActions.addLocation(cityAccentName, country)).toEqual(expectedAction)
     });
     it('should create an action to remove the city from the list by its place', () => {
         const place = 1;

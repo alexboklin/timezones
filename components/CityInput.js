@@ -45,7 +45,7 @@ export default class CityInput extends React.Component {
             snackBarMessage: `${chosenRequest} added to the list`
         });
 
-        this.props.cityListActions.fetchCityAndItsTime(this.props.citySuggestions[index].id);   //addCity(chosenRequest);
+        this.props.cityListActions.addLocationAndItsLocalTime(this.props.citySuggestions[index].id);   //addCity(chosenRequest);
     };
 
     render() {
