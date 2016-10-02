@@ -16,14 +16,20 @@ module.exports = {
 	module: {
 		loaders: [
 			{
-				test: /\.js$/, 
-				exclude: /node_modules/, 
+				test: /\.js$/,
+				exclude: /node_modules/,
 				loader: 'babel-loader',
 				query: {
 		          presets: ['react', 'es2015', 'stage-0']
 		        }
-			}
+			},
+            {
+                include: /\.json$/, loaders: ["json-loader"],
+            }
 		]
 	},
+    resolve: {
+        extensions: ['', '.json', '.jsx', '.js']
+    },
 	plugins: [HtmlWebpackPluginConfig]
 };
