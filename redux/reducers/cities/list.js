@@ -11,7 +11,7 @@ let cityList = (cityList = [], action) => {
                 ...cityList,
                 {
                     place: cityList.reduce((maxId, city) => Math.max(city.place, maxId), -1) + 1,
-                    nameAndCountry: action.payload.nameAndCountry
+                    city: action.payload.city
                 }
             ];
         case DELETE_CITY:       

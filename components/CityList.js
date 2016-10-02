@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { List } from 'material-ui/List';
 import Chip from 'material-ui/Chip';
 import Snackbar from 'material-ui/Snackbar';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 export default class CityList extends React.Component {
     constructor(props) {
@@ -58,19 +58,25 @@ export default class CityList extends React.Component {
             snackBarIsOpen: false
         });
     };   
-    
+
+    renderTime = () => {
+        let time = moment.tz("2013-12-01", "America/Los_Angeles").format();
+        console.log(time); // moment().tz("UTC").format()
+        return moment().tz("UTC").format();
+    };
+
     render() {
         return (
             <div>
                 <List>
                     {
-                        this.props.cityList.map(city =>
-                            <Chip key={city.place} onRequestDelete={() => this.handleRequestDelete(city)}>
-                                {city.nameAndCountry}
+                        this.props.cityList.map(cityItem =>
+                            <Chip key={cityItem.place} onRequestDelete={() => this.handleRequestDelete(cityItem)}>
+                                {cityItem.city.accentName}
+                                Time: {moment().tz("UTC").format()}
                             </Chip>
                         )
                     }
-                    <Chip>Test time: {moment().format()}</Chip>
                 </List>
                 <Snackbar
                     open={this.state.snackBarIsOpen}

@@ -7,10 +7,10 @@ import {
 import axios from 'axios';
 
 // Wrap returned object in parens so it's interpreted as an object expression and not a block of code.
-export const addLocation = (cityAccentName, country) => ({
+export const addCity = city => ({
     type: ADD_CITY,
     payload: {
-        nameAndCountry: `${cityAccentName}, ${country}`
+        city
     }
 });
 
@@ -40,17 +40,24 @@ export const addLocationAndItsLocalTime = id => {
         .then(
             response => {
                 console.log("Got city by id: ", response.data);
+
+                // TODO: create a City model and parseJson method for it
                 let city = response.data;
+
                 getTimezone(city, timestamp, apiKey)
                 .then(
                     response => {
                         console.log('Got response from Google Maps API: ', response.data);
+
+                        // TODO: save response.data.timeZoneId and response.data.timeZoneName
+
+                        // TODO: save countries while indexing via http://country.io/names.json?
                         getCountryByCode(city.countryCode)
                         .then(response => {
                             console.log('Got response from Mashape: ', response.data);
-                            let country = response.data['name'];
+                            let country = response.data.name;
                             console.log('country: ', country);
-                            dispatch(addLocation(city.accentName, country));
+                            dispatch(addCity(city));
                         })
                 })
             }
