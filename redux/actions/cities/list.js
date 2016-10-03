@@ -48,9 +48,8 @@ export const addLocationAndItsLocalTime = id => {
                 .then(
                     response => {
                         console.log('Got response from Google Maps API: ', response.data);
-
                         // TODO: save response.data.timeZoneId and response.data.timeZoneName
-
+                        city.timeZoneId = response.data.timeZoneId;
                         dispatch(addCity(city));
                 })
             }

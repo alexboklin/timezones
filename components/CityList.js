@@ -72,8 +72,7 @@ export default class CityList extends React.Component {
                     {
                         this.props.cityList.map(cityItem =>
                             <Chip key={cityItem.place} onRequestDelete={() => this.handleRequestDelete(cityItem)}>
-                                {cityItem.city.accentName}
-                                Time: {moment().tz("UTC").format()}
+                                {`${cityItem.city.accentName} ${moment().tz(cityItem.city.timeZoneId).format()}`}
                             </Chip>
                         )
                     }
