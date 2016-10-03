@@ -18,9 +18,9 @@ let cityList = (cityList = [], action) => {
             return [
                 ...cityList.slice(0, action.payload.place),
                 ...cityList.slice(action.payload.place + 1).map(
-                    city => ({
-                        place: city.place - 1,
-                        nameAndCountry: city.nameAndCountry
+                    cityItem => ({
+                        place: cityItem.place - 1,
+                        city: cityItem.city
                     })
                 )
             ];

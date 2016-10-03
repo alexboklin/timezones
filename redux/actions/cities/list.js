@@ -39,7 +39,7 @@ export const addLocationAndItsLocalTime = (id, suggestion) => {
         getCityById(id)
         .then(
             response => {
-                console.log("Got city by id: ", response.data);
+                // console.log("Got city by id: ", response.data);
 
                 // TODO: create a City model and parseJson method for it
                 let city = response.data;
@@ -48,7 +48,7 @@ export const addLocationAndItsLocalTime = (id, suggestion) => {
                 getTimezone(city, timestamp, apiKey)
                 .then(
                     response => {
-                        console.log('Got response from Google Maps API: ', response.data);
+                        // console.log('Got response from Google Maps API: ', response.data);
                         city.timeZoneId = response.data.timeZoneId;
                         city.timeZoneName = response.data.timeZoneName;
                         dispatch(addCity(city));
