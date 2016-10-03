@@ -28,7 +28,7 @@ export const restoreLastDeletedCity = city => ({
     }
 });
 
-export const addLocationAndItsLocalTime = id => {
+export const addLocationAndItsLocalTime = (id, suggestion) => {
 
     // See: http://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
     let timestamp = Math.floor(Date.now() / 1000);
@@ -43,13 +43,14 @@ export const addLocationAndItsLocalTime = id => {
 
                 // TODO: create a City model and parseJson method for it
                 let city = response.data;
+                city.suggestion = suggestion;
 
                 getTimezone(city, timestamp, apiKey)
                 .then(
                     response => {
                         console.log('Got response from Google Maps API: ', response.data);
-                        // TODO: save response.data.timeZoneId and response.data.timeZoneName
                         city.timeZoneId = response.data.timeZoneId;
+                        city.timeZoneName = response.data.timeZoneName;
                         dispatch(addCity(city));
                 })
             }
