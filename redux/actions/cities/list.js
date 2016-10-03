@@ -51,14 +51,7 @@ export const addLocationAndItsLocalTime = id => {
 
                         // TODO: save response.data.timeZoneId and response.data.timeZoneName
 
-                        // TODO: save countries while indexing via http://country.io/names.json?
-                        getCountryByCode(city.countryCode)
-                        .then(response => {
-                            console.log('Got response from Mashape: ', response.data);
-                            let country = response.data.name;
-                            console.log('country: ', country);
-                            dispatch(addCity(city));
-                        })
+                        dispatch(addCity(city));
                 })
             }
         );
@@ -74,15 +67,4 @@ const getTimezone = (city, timestamp, apiKey) => {
     // https://developers.google.com/maps/documentation/timezone/intro
     return axios.get(`https://maps.googleapis.com/maps/api/timezone/json?location=${city.latitude},${city.longitude}
                     &timestamp=${timestamp}&key=${apiKey}`)
-};
-
-const getCountryByCode = countryCode => {
-    return axios({
-        method: 'get',
-        url: `https://restcountries-v1.p.mashape.com/alpha/${countryCode}`,
-        headers: {
-            'X-Mashape-Key': 'WP786F8XUpmshWPmL2YCGOsZscP3p1IpQCejsnhOY7enr5btTe',
-            'Accept': 'application/json'
-        }
-    })
 };
