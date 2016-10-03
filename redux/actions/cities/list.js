@@ -43,7 +43,6 @@ export const addLocationAndItsLocalTime = (id, suggestion) => {
 
                 // TODO: create a City model and parseJson method for it
                 let city = response.data;
-                city.suggestion = suggestion;
 
                 getTimezone(city, timestamp, apiKey)
                 .then(
