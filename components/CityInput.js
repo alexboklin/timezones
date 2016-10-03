@@ -42,7 +42,7 @@ export default class CityInput extends React.Component {
         // TODO: should fire only when all async actions are done!
         this.setState({
             snackBarIsOpen: true,
-            snackBarMessage: `${chosenRequest} added to the list`
+            snackBarMessage: `${chosenRequest} was added to the list`
         });
 
         this.props.cityListActions.addLocationAndItsLocalTime(this.props.citySuggestions[index].id, chosenRequest);

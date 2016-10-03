@@ -59,12 +59,6 @@ export default class CityList extends React.Component {
         });
     };   
 
-    renderTime = () => {
-        let time = moment.tz("2013-12-01", "America/Los_Angeles").format();
-        console.log(time); // moment().tz("UTC").format()
-        return moment().tz("UTC").format();
-    };
-
     render() {
         return (
             <div>
