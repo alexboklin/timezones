@@ -1,5 +1,6 @@
 import React from 'react';
-import CityInput from './CityInput';
+import AutoCompleteForm from './AutoCompleteForm';
+import CityInputSnackbar from './CityInputSnackbar';
 import CityList from './CityList';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -12,13 +13,19 @@ import * as citySuggestionsActions from '../redux/actions/cities/suggestions';
 // and all action creators as actions into App.
 const App = ({ cityList, citySuggestions, cityListActions, citySuggestionsActions }) => (
     <div>
-        <br/>
-        <CityInput
+        <AutoCompleteForm
+            cityListActions={cityListActions}
+            citySuggestionsActions={citySuggestionsActions}
+            cityList={cityList}
+            citySuggestions={citySuggestions}
+        />
+
+        <CityInputSnackbar
             cityListActions={cityListActions}
             citySuggestionsActions={citySuggestionsActions}
             cityList={cityList}
             citySuggestions={citySuggestions}/>
-        <br/>
+
         <CityList
             cityListActions={cityListActions}
             cityList={cityList}/>
