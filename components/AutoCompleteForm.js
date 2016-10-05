@@ -1,8 +1,8 @@
 import React from 'react';
-import AutoComplete from 'material-ui/AutoComplete';
-// import { Field, reduxForm } from 'redux-form';
+import { AutoComplete } from 'redux-form-material-ui';
+import { Field, reduxForm } from 'redux-form';
 
-export default class AutoCompleteForm extends React.Component {
+class AutoCompleteForm extends React.Component {
     constructor(props) {
         super(props);
 
@@ -32,39 +32,42 @@ export default class AutoCompleteForm extends React.Component {
         this.props.cityListActions.addLocationAndItsLocalTime(this.props.citySuggestions[index].id, chosenRequest);
     };
 
-    renderAutoComplete = () => (
-        <Autocomplete
-            filter={AutoComplete.caseInsensitiveFilter}
-            floatingLabelText="Type the city -- case insensitive"
-            dataSource={this.props.citySuggestions.map(suggestion => suggestion.text)}
-            onNewRequest={this.handleNewRequest}
-            onUpdateInput={this.handleUpdateInput}
-        />
-    );
+    // renderAutoComplete = () => (
+    //     <Autocomplete
+    //         filter={AutoComplete.caseInsensitiveFilter}
+    //         floatingLabelText="Type the city -- case insensitive"
+    //         dataSource={this.props.citySuggestions.map(suggestion => suggestion.text)}
+    //         onNewRequest={this.handleNewRequest}
+    //         onUpdateInput={this.handleUpdateInput}
+    //     />
+    // );
 
 // <form>
 // <Field name="citySuggester" component={this.renderAutoComplete}/>
 // </form>
 
+    // See: http://erikras.github.io/redux-form-material-ui/
+    // Also see: http://redux-form.com/6.0.5/examples/selectingFormValues/
     render() {
         return (
-
-            <div>
-                <AutoComplete
+            <form>
+                <Field
+                    name="citySuggester"
+                    component={AutoComplete}
                     filter={AutoComplete.caseInsensitiveFilter}
                     floatingLabelText="Type the city -- case insensitive"
                     dataSource={this.props.citySuggestions.map(suggestion => suggestion.text)}
                     onNewRequest={this.handleNewRequest}
                     onUpdateInput={this.handleUpdateInput}
                 />
-            </div>
+            </form>
         );
     }
 }
 
-// AutoCompleteForm = reduxForm({
-//     form: 'autoCompleteForm',
-//     // validate
-// })(AutoCompleteForm);
+AutoCompleteForm = reduxForm({
+    form: 'autoCompleteForm',
+    // validate
+})(AutoCompleteForm);
 
-// export default AutoCompleteForm
+export default AutoCompleteForm
