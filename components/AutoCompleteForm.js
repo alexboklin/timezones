@@ -9,6 +9,21 @@ const dataSourceConfig = {
     value: 'valueKey',
 };
 
+const validate = values => {
+    const errors = {};
+    const requiredFields = [ 'citySuggestion' ];
+    requiredFields.forEach(field => {
+        if (!values[ field ]) {
+            errors[ field ] = 'Required'
+        }
+    });
+
+    if (values.citySuggestion && !/^[A-Za-z\s]{1,},[A-Za-z\s]{1,}$/.test(values.citySuggestion)) {
+        errors.citySuggestion = 'City and country name separated by comma'
+    }
+    return errors
+};
+
 class AutoCompleteForm extends React.Component {
     constructor(props) {
         super(props);
@@ -50,6 +65,7 @@ class AutoCompleteForm extends React.Component {
 
         console.log('ID: ', citySuggestionWithId.id);
 
+        // TODO: validate to see if the list already contains the city
         this.props.cityListActions.addLocationAndItsLocalTime(citySuggestionWithId.id);
     };
 
@@ -111,7 +127,7 @@ class AutoCompleteForm extends React.Component {
 
 AutoCompleteForm = reduxForm({
     form: 'autoCompleteForm',
-    // validate
+    validate
 })(AutoCompleteForm);
 
 export default AutoCompleteForm
