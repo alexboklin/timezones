@@ -1,5 +1,6 @@
 import React from 'react';
 import { AutoComplete } from 'redux-form-material-ui';
+import { AutoComplete as MUIAutoComplete } from 'material-ui'
 import { Field, reduxForm } from 'redux-form';
 
 class AutoCompleteForm extends React.Component {
@@ -54,7 +55,7 @@ class AutoCompleteForm extends React.Component {
                 <Field
                     name="citySuggester"
                     component={AutoComplete}
-                    filter={AutoComplete.caseInsensitiveFilter}
+                    filter={MUIAutoComplete.caseInsensitiveFilter}
                     floatingLabelText="Type the city -- case insensitive"
                     dataSource={this.props.citySuggestions.map(suggestion => suggestion.text)}
                     onNewRequest={this.handleNewRequest}
