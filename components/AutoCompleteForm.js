@@ -16,7 +16,7 @@ const validate = values => {
     if (values.citySuggestion && !/^[A-Za-z\s]{1,},[A-Za-z\s]{1,}$/.test(values.citySuggestion)) {
         errors.citySuggestion = 'City and country name separated by comma';
     }
-    return errors
+    return errors;
 };
 
 class AutoCompleteForm extends React.Component {
