@@ -28,7 +28,7 @@ export const restoreLastDeletedCity = city => ({
     }
 });
 
-export const addLocationAndItsLocalTime = (id, suggestion) => {
+export const addLocationAndItsLocalTime = id => {
 
     // See: http://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
     let timestamp = Math.floor(Date.now() / 1000);

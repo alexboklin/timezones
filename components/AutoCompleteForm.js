@@ -1,7 +1,13 @@
 import React from 'react';
 import { AutoComplete } from 'redux-form-material-ui';
-import { AutoComplete as MUIAutoComplete } from 'material-ui'
+import { AutoComplete as MUIAutoComplete } from 'material-ui';
+import MenuItem from 'material-ui/MenuItem';
 import { Field, reduxForm } from 'redux-form';
+
+const dataSourceConfig = {
+    text: 'textKey',
+    value: 'valueKey',
+};
 
 class AutoCompleteForm extends React.Component {
     constructor(props) {
@@ -20,18 +26,33 @@ class AutoCompleteForm extends React.Component {
         this.props.citySuggestionsActions.fetchCitySuggestions(searchText);
     };
 
-    handleNewRequest = (chosenRequest, index) => {
-        console.log("chosenRequest", chosenRequest);
-        console.log("index", index);
+    // handleNewRequest = (chosenRequest, index) => {
+    //     console.log("chosenRequest", chosenRequest);
+    //     console.log("index", index);
+    //
+    //     // TODO: deal with Snackbar component
+    //     // this.setState({
+    //     //     snackBarIsOpen: true,
+    //     //     snackBarMessage: `${chosenRequest} was added to the list`
+    //     // });
+    //
+    //     this.props.cityListActions.addLocationAndItsLocalTime(this.props.citySuggestions[index].id, chosenRequest);
+    // };
 
-        // TODO: deal with Snackbar component
-        // this.setState({
-        //     snackBarIsOpen: true,
-        //     snackBarMessage: `${chosenRequest} was added to the list`
-        // });
+    // See https://github.com/erikras/redux-form/issues/190 for solution
+    // Returns an object where
+    handleNewRequest = data => {
+        console.log('HERE: ', data);
 
-        this.props.cityListActions.addLocationAndItsLocalTime(this.props.citySuggestions[index].id, chosenRequest);
+        let citySuggestionWithId = this.props.citySuggestions.find(
+            citySuggestion => citySuggestion.text == data.citySuggestion
+        );
+
+        console.log('ID: ', citySuggestionWithId.id);
+
+        this.props.cityListActions.addLocationAndItsLocalTime(citySuggestionWithId.id);
     };
+
 
     // renderAutoComplete = () => (
     //     <Autocomplete
@@ -50,17 +71,39 @@ class AutoCompleteForm extends React.Component {
     // See: http://erikras.github.io/redux-form-material-ui/
     // Also see: http://redux-form.com/6.0.5/examples/selectingFormValues/
     render() {
+        const { handleSubmit, pristine, reset, submitting } = this.props;
+
+        let suggestions = this.props.citySuggestions.map( suggestion => ({
+            text: suggestion.text,
+            value:  (
+                <MenuItem primaryText="text" value={suggestion}/>
+            )
+        }));
+
+        let suggestions2 = this.props.citySuggestions.map( suggestion => ({
+            textKey: suggestion.text,
+            valueKey: suggestion.id
+        }));
+
         return (
-            <form>
-                <Field
-                    name="citySuggester"
-                    component={AutoComplete}
-                    filter={MUIAutoComplete.caseInsensitiveFilter}
-                    floatingLabelText="Type the city -- case insensitive"
-                    dataSource={this.props.citySuggestions.map(suggestion => suggestion.text)}
-                    onNewRequest={this.handleNewRequest}
-                    onUpdateInput={this.handleUpdateInput}
-                />
+            // .map(suggestion => suggestion.text)
+            // See http://redux-form.com/6.0.5/docs/api/Props.md/
+            <form onSubmit={handleSubmit(this.handleNewRequest)}>
+                <div>
+                    <Field
+                        name="citySuggestion"
+                        component={AutoComplete}
+                        filter={MUIAutoComplete.caseInsensitiveFilter}
+                        floatingLabelText="Type the city -- case insensitive"
+                        dataSource={this.props.citySuggestions.map(suggestion => suggestion.text)}
+                        dataSourceConfig={dataSourceConfig}
+                        onNewRequest={this.handleNewRequest}
+                        onUpdateInput={this.handleUpdateInput}
+                    />
+                </div>
+                <div>
+                    <button type="submit" disabled={pristine || submitting}>Submit</button>
+                </div>
             </form>
         );
     }
