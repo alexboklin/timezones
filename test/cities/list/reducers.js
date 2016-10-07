@@ -1,6 +1,6 @@
 import expect from 'expect';
 import cityListReducers from '../../../redux/reducers/cities/list';
-import { ADD_CITY, DELETE_CITY, RESTORE_LAST_DELETED_CITY } from '../../../redux/actions/actionTypes';
+import { ADD_CITY, DELETE_CITY, RESTORE_DELETED_CITY } from '../../../redux/actions/actionTypes';
 
 describe('city list reducers', () => {
     it('should return the initial state', () => {
@@ -94,7 +94,7 @@ describe('city list reducers', () => {
             cityListReducers(
                 cityListBefore,
                 {
-                    type: RESTORE_LAST_DELETED_CITY,
+                    type: RESTORE_DELETED_CITY,
                     payload: {
                         city: {
                             place: 1,

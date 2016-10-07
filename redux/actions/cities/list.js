@@ -1,12 +1,15 @@
 import {
     ADD_CITY,
     DELETE_CITY,
-    RESTORE_LAST_DELETED_CITY
+    RESTORE_DELETED_CITY,
+    CACHE_DELETED_CITY,
 } from '../actionTypes';
+
+import { showNotification } from './notification';
 
 import axios from 'axios';
 
-// Wrap returned object in parens so it's interpreted as an object expression and not a block of code.
+// Wrap returned object in parens so it's interpreted as an object expression and not as a block of code.
 export const addCity = city => ({
     type: ADD_CITY,
     payload: {
@@ -14,19 +17,41 @@ export const addCity = city => ({
     }
 });
 
-export const deleteCity = place => ({
+const deleteCity = place => ({
     type: DELETE_CITY,
     payload: {
         place
     }
 });
 
-export const restoreLastDeletedCity = city => ({
-    type: RESTORE_LAST_DELETED_CITY,
+const cacheDeletedCity = (cityItem) => ({
+    type: CACHE_DELETED_CITY,
+    payload: {
+        cityItem
+    }
+});
+
+export const deleteAndCacheCityAndNotify = (city) => {
+    return dispatch => {
+        dispatch(deleteCity(city.place));
+        dispatch(cacheDeletedCity(city));
+        dispatch(showNotification());
+    }
+};
+
+const restoreCity = city => ({
+    type: RESTORE_DELETED_CITY,
     payload: {
         city
     }
 });
+
+export const restoreDeletedCityAndNotify = city => {
+    return dispatch => {
+
+    }
+
+};
 
 export const addLocationAndItsLocalTime = id => {
 
@@ -37,7 +62,7 @@ export const addLocationAndItsLocalTime = id => {
     // TODO: can we use all here?
     return (dispatch, getState) => {
 
-        if (getState().cityList.find(item => item.city.id == id) !== undefined) {
+        if (getState().cityList.find(cityItem => cityItem.city.id == id) !== undefined) {
             // TODO: dispatch a popup?
             return;
         }

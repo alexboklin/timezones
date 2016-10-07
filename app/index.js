@@ -16,7 +16,10 @@ injectTapEventPlugin();
 const initialState = {
     cityList: [],
     citySuggestions: [],
-    // currentCityInput: '' // TODO: currentCityInput for form validation?
+    deletedCity: null,
+    showNotification: false,
+    // isRemovingACity: false,
+    // isRestoringACity: false
 };
 
 const store = configureStore(initialState);

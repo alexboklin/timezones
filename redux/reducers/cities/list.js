@@ -1,7 +1,7 @@
 import {
     ADD_CITY,
     DELETE_CITY,
-    RESTORE_LAST_DELETED_CITY
+    RESTORE_DELETED_CITY
 } from '../../actions/actionTypes';
 
 let cityList = (cityList = [], action) => {
@@ -14,7 +14,8 @@ let cityList = (cityList = [], action) => {
                     city: action.payload.city
                 }
             ];
-        case DELETE_CITY:       
+
+        case DELETE_CITY:
             return [
                 ...cityList.slice(0, action.payload.place),
                 ...cityList.slice(action.payload.place + 1).map(
@@ -24,7 +25,9 @@ let cityList = (cityList = [], action) => {
                     })
                 )
             ];
-        case RESTORE_LAST_DELETED_CITY:
+
+        // TODO: action.payload.city.place --> action.payload.place
+        case RESTORE_DELETED_CITY:
             return [
                 ...cityList.slice(0, action.payload.city.place),
                 action.payload.city,
@@ -35,6 +38,7 @@ let cityList = (cityList = [], action) => {
                     })
                 )
             ];
+
         default:
             return cityList;
     }
