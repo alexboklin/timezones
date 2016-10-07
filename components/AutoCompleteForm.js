@@ -22,13 +22,8 @@ const validate = values => {
 class AutoCompleteForm extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            dataSource: [],
-        };
     };
 
-    // TODO: update state and pass stuff down via componentWillReceiveProps
     handleUpdateInput = (searchText, dataSource) => {
         this.props.citySuggestionsActions.fetchCitySuggestions(searchText);
     };
@@ -40,9 +35,6 @@ class AutoCompleteForm extends React.Component {
             citySuggestion => citySuggestion.text == data.citySuggestion
         );
 
-        console.log('ID: ', citySuggestionWithId.id);
-
-        // TODO: validate to see if the list already contains the city
         this.props.cityListActions.addLocationAndItsLocalTime(citySuggestionWithId.id);
     };
 
@@ -61,7 +53,6 @@ class AutoCompleteForm extends React.Component {
                         filter={MUIAutoComplete.caseInsensitiveFilter}
                         floatingLabelText="Type the city -- case insensitive"
                         dataSource={this.props.citySuggestions.map(suggestion => suggestion.text)}
-                        onNewRequest={this.handleNewRequest}
                         onUpdateInput={this.handleUpdateInput}
                     />
                 </div>
