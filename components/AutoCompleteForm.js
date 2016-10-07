@@ -30,17 +30,12 @@ class AutoCompleteForm extends React.Component {
 
     // TODO: update state and pass stuff down via componentWillReceiveProps
     handleUpdateInput = (searchText, dataSource) => {
-        console.log("searchText: ", searchText);
-        console.log("dataSource: ", dataSource);
-
         this.props.citySuggestionsActions.fetchCitySuggestions(searchText);
     };
 
     // See https://github.com/erikras/redux-form/issues/190 for solution
     // TODO: now can remove onNewRequest from the Field
     handleNewRequest = data => {
-        console.log('HERE: ', data);
-
         let citySuggestionWithId = this.props.citySuggestions.find(
             citySuggestion => citySuggestion.text == data.citySuggestion
         );
@@ -57,7 +52,7 @@ class AutoCompleteForm extends React.Component {
         const { handleSubmit, pristine, submitting } = this.props;
 
         return (
-            // See http://redux-form.com/6.0.5/docs/api/Props.md/
+            // See: http://redux-form.com/6.0.5/docs/api/Props.md/
             <form onSubmit={handleSubmit(this.handleNewRequest)}>
                 <div>
                     <Field

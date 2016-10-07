@@ -35,7 +35,13 @@ export const addLocationAndItsLocalTime = id => {
     const apiKey = 'AIzaSyCvwQxLACrb-Dr70mBIKH7DhLIMOgJXUX8';
 
     // TODO: can we use all here?
-    return dispatch => {
+    return (dispatch, getState) => {
+
+        if (getState().cityList.find(item => item.city.id == id) !== undefined) {
+            // TODO: dispatch a popup?
+            return;
+        }
+
         getCityById(id)
         .then(
             response => {
