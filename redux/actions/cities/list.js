@@ -84,8 +84,8 @@ export const addLocationAndItsLocalTime = id => {
                         dispatch(addCity(city));
                 })
             }
-        );
-        // TODO: catch possible errors
+        )
+        .catch(error => console.log(`Couldn't add location and its local time: ${error}`));
     }
 };
 
