@@ -18,6 +18,7 @@ const initialState = {
     citySuggestions: [],
     deletedCity: null,
     showNotification: false,
+    notificationText: ''
     // isRemovingACity: false,
     // isRestoringACity: false
 };

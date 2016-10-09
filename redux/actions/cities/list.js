@@ -5,7 +5,7 @@ import {
     CACHE_DELETED_CITY,
 } from '../actionTypes';
 
-import { showNotification } from './notification';
+import { showNotification, changeNotificationText } from './notification';
 
 import axios from 'axios';
 
@@ -24,18 +24,26 @@ const deleteCity = place => ({
     }
 });
 
-const cacheDeletedCity = (cityItem) => ({
+const cacheDeletedCity = cityItem => ({
     type: CACHE_DELETED_CITY,
     payload: {
         cityItem
     }
 });
 
-export const deleteAndCacheCityAndNotify = (city) => {
-    return dispatch => {
+export const deleteAndCacheCityAndNotify = city => {
+    return (dispatch, getState) => {
         dispatch(deleteCity(city.place));
         dispatch(cacheDeletedCity(city));
         dispatch(showNotification());
+
+        let deletedCity = getState().deletedCity.cityItem.city;
+
+        let notification = `${deletedCity.accentName}, ${deletedCity.country} removed from the list`;
+        console.log('notification: ', notification);
+
+        dispatch(changeNotificationText(notification));
+
     }
 };
 

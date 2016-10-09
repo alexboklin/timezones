@@ -1,9 +1,10 @@
 import {
+    CHANGE_NOTIFICATION_TEXT,
     SHOW_NOTIFICATION,
     HIDE_NOTIFICATION
 } from '../../actions/actionTypes';
 
-let showNotification = (showNotification = false, action) => {
+export let showNotification = (showNotification = false, action) => {
     switch (action.type) {
         case SHOW_NOTIFICATION:
             console.log('SHOW_NOTIFICATION');
@@ -13,8 +14,17 @@ let showNotification = (showNotification = false, action) => {
             return false;
 
         default:
-            return false;
+            return showNotification;
     }
 };
 
-export default showNotification;
+export let notificationText = (notificationText = '', action) => {
+    switch (action.type) {
+        case CHANGE_NOTIFICATION_TEXT:
+            console.log('CHANGE_NOTIFICATION_TEXT: ', action.payload);
+            return action.payload.notification;
+
+        default:
+            return notificationText;
+    }
+};

@@ -11,7 +11,9 @@ import * as notificationActions from '../redux/actions/cities/notification'
 // Here, we inject the slices of the state (and listen to it) via mapStateToProps
 // and all action creators as props.
 // TODO: use ...props?
-const App = ({ cityList, citySuggestions, cityListActions, citySuggestionsActions, showNotification, notificationActions }) => (
+const App = ({ cityList, citySuggestions,
+    cityListActions, citySuggestionsActions,
+    showNotification, notificationActions, notificationText }) => (
     <div>
         <AutoCompleteForm
             cityListActions={cityListActions}
@@ -24,7 +26,8 @@ const App = ({ cityList, citySuggestions, cityListActions, citySuggestionsAction
             cityListActions={cityListActions}
             cityList={cityList}
             notificationActions={notificationActions}
-            showNotification={showNotification}/>
+            showNotification={showNotification}
+            notificationText={notificationText}/>
 
         <CityList
             cityListActions={cityListActions}
@@ -39,6 +42,7 @@ const mapStateToProps = state => ({
     citySuggestions: state.citySuggestions,
     deletedCity: state.deletedCity,
     showNotification: state.showNotification,
+    notificationText: state.notificationText
 });
 
 // bindActionCreators turns an object whose values are action creators,
