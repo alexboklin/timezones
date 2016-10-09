@@ -12,37 +12,31 @@ import axios from 'axios';
 // Wrap returned object in parens so it's interpreted as an object expression and not as a block of code.
 export const addCity = city => ({
     type: ADD_CITY,
-    payload: {
-        city
-    }
+    payload: city
 });
 
 const deleteCity = place => ({
     type: DELETE_CITY,
-    payload: {
-        place
-    }
+    payload: place
 });
 
 const cacheDeletedCity = cityItem => ({
     type: CACHE_DELETED_CITY,
-    payload: {
-        cityItem
-    }
+    payload: cityItem
 });
 
 export const deleteAndCacheCityAndNotify = city => {
     return (dispatch, getState) => {
         dispatch(deleteCity(city.place));
         dispatch(cacheDeletedCity(city));
-        dispatch(showNotification());
 
         let deletedCity = getState().deletedCity.cityItem.city;
-
         let notification = `${deletedCity.accentName}, ${deletedCity.country} removed from the list`;
         console.log('notification: ', notification);
 
         dispatch(changeNotificationText(notification));
+
+        dispatch(showNotification());
 
     }
 };
@@ -91,13 +85,13 @@ export const addCityToListAndNotify = id => {
                         city.timeZoneName = response.data.timeZoneName;
                         dispatch(addCity(city));
 
-                        dispatch(showNotification());
-
                         let notification = `${city.accentName}, ${city.country} added to the list`;
                         // let notification = `${deletedCity.accentName}, ${deletedCity.country} removed from the list`;
                         console.log('notification: ', notification);
 
                         dispatch(changeNotificationText(notification));
+
+                        dispatch(showNotification());
                 })
             }
         )

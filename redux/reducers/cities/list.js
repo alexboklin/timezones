@@ -7,13 +7,9 @@ import {
 let cityList = (cityList = [], action) => {
     switch (action.type) {
         case ADD_CITY:
-            return [
-                ...cityList,
-                {
-                    place: cityList.reduce((maxId, city) => Math.max(city.place, maxId), -1) + 1,
-                    city: action.payload.city
-                }
-            ];
+            let city = action.payload;
+            city.placeInList = cityList.reduce((maxId, city) => Math.max(city.place, maxId), -1) + 1;
+            return [...cityList, city];
 
         case DELETE_CITY:
             return [

@@ -49,9 +49,9 @@ export default class CityList extends React.Component {
             <div>
                 <List>
                     {
-                        this.props.cityList.map(cityItem =>
-                            <Chip key={cityItem.place} onRequestDelete={() => this.handleRequestDelete(cityItem)}>
-                                {`${cityItem.city.suggest.output} ${moment().tz(cityItem.city.timeZoneId).format()} (${cityItem.city.timeZoneName})`}
+                        this.props.cityList.map(city =>
+                            <Chip key={city.placeInList} onRequestDelete={() => this.handleRequestDelete(city)}>
+                                {`${city.suggest.output} ${moment().tz(city.timeZoneId).format()} (${city.timeZoneName})`}
                             </Chip>
                         )
                     }
