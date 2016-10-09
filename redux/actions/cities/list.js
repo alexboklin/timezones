@@ -61,7 +61,7 @@ export const restoreDeletedCityAndNotify = city => {
 
 };
 
-export const addLocationAndItsLocalTime = id => {
+export const addCityToListAndNotify = id => {
 
     // See: http://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
     let timestamp = Math.floor(Date.now() / 1000);
@@ -78,7 +78,7 @@ export const addLocationAndItsLocalTime = id => {
         getCityById(id)
         .then(
             response => {
-                // console.log("Got city by id: ", response.data);
+                console.log("Got city by id: ", response.data);
 
                 // TODO: create a City model and parseJson method for it
                 let city = response.data;
@@ -90,6 +90,14 @@ export const addLocationAndItsLocalTime = id => {
                         city.timeZoneId = response.data.timeZoneId;
                         city.timeZoneName = response.data.timeZoneName;
                         dispatch(addCity(city));
+
+                        dispatch(showNotification());
+
+                        let notification = `${city.accentName}, ${city.country} added to the list`;
+                        // let notification = `${deletedCity.accentName}, ${deletedCity.country} removed from the list`;
+                        console.log('notification: ', notification);
+
+                        dispatch(changeNotificationText(notification));
                 })
             }
         )

@@ -1,19 +1,19 @@
 import React from 'react';
 import Snackbar from 'material-ui/Snackbar';
 
-const CityInputSnackbar = (props) => {
+const CityListSnackbar = (props) => {
     return (
-        <div className="text-center">
+        <div>
             <Snackbar
                 open={props.showNotification}
                 message={props.notificationText}
                 action="undo"
                 autoHideDuration={4000}
-                onActionTouchTap={() => props.cityListActions.deleteAndCacheCityAndNotify(props.cityList[props.cityList.length - 1])}
+                onActionTouchTap={props.cityListActions.restoreDeletedCityAndNotify(this.state.deletedCity)}
                 onRequestClose={props.notificationActions.hideNotification}
             />
         </div>
     );
 };
 
-export default CityInputSnackbar;
+export default CityListSnackbar;

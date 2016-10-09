@@ -35,7 +35,7 @@ class AutoCompleteForm extends React.Component {
             citySuggestion => citySuggestion.text == data.citySuggestion
         );
 
-        this.props.cityListActions.addLocationAndItsLocalTime(citySuggestionWithId.id);
+        this.props.cityListActions.addCityToListAndNotify(citySuggestionWithId.id);
     };
 
     // See: http://erikras.github.io/redux-form-material-ui/

@@ -1,6 +1,7 @@
 import React from 'react';
 import AutoCompleteForm from './AutoCompleteForm';
 import CityInputSnackbar from './CityInputSnackbar';
+import CityListSnackbar from './CityInputSnackbar';
 import CityList from './CityList';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -11,6 +12,7 @@ import * as notificationActions from '../redux/actions/cities/notification'
 // Here, we inject the slices of the state (and listen to it) via mapStateToProps
 // and all action creators as props.
 // TODO: use ...props?
+// TODO: CityInputSnackbar and CityListSnackbar differ only in onActionTouchTap handler
 const App = ({ cityList, citySuggestions,
     cityListActions, citySuggestionsActions,
     showNotification, notificationActions, notificationText }) => (
@@ -27,11 +29,22 @@ const App = ({ cityList, citySuggestions,
             cityList={cityList}
             notificationActions={notificationActions}
             showNotification={showNotification}
-            notificationText={notificationText}/>
+            notificationText={notificationText}
+        />
 
         <CityList
             cityListActions={cityListActions}
-            cityList={cityList}/>
+            cityList={cityList}
+        />
+
+        <CityListSnackbar
+            cityListActions={cityListActions}
+            cityList={cityList}
+            notificationActions={notificationActions}
+            showNotification={showNotification}
+            notificationText={notificationText}
+        />
+
     </div>
 );
 

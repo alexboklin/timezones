@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { List } from 'material-ui/List';
 import Chip from 'material-ui/Chip';
-// import Snackbar from 'material-ui/Snackbar';
 import moment from 'moment-timezone';
 
 export default class CityList extends React.Component {
@@ -44,29 +43,6 @@ export default class CityList extends React.Component {
         
         this.props.cityListActions.deleteAndCacheCityAndNotify(city);
     };
-
-    // handleActionTouchTap = () => {
-    //     this.setState({
-    //         snackBarIsOpen: false
-    //     });
-    //     this.props.cityListActions.restoreDeletedCityAndNotify(this.state.deletedCity);
-    //
-    // };
-    //
-    // handleRequestClose = () => {
-    //     this.setState({
-    //         snackBarIsOpen: false
-    //     });
-    // };
-
-    // <Snackbar
-    //     open={this.state.snackBarIsOpen}
-    //     message={this.state.snackBarMessage}
-    //     action="undo"
-    //     autoHideDuration={this.state.snackBarAutoHideDuration}
-    //     onActionTouchTap={this.handleActionTouchTap}
-    //     onRequestClose={this.handleRequestClose}
-    // />
 
     render() {
         return (
