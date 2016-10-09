@@ -1,6 +1,6 @@
 import expect from 'expect';
 import * as cityListActions from '../../../redux/actions/cities/list';
-import { ADD_CITY, DELETE_CITY, RESTORE_DELETED_CITY } from '../../../redux/actions/actionTypes';
+import { ADD_CITY, DELETE_CITY_BY_ITS_PLACE, RESTORE_DELETED_CITY } from '../../../redux/actions/actionTypes';
 
 describe('city list actions', () => {
     it('should create an action to add a new city to the list', () => {
@@ -17,7 +17,7 @@ describe('city list actions', () => {
     it('should create an action to remove the city from the list by its place', () => {
         const place = 1;
         const expectedAction = {
-            type: DELETE_CITY,
+            type: DELETE_CITY_BY_ITS_PLACE,
             payload: {
                 place: 1
             }

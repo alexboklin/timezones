@@ -1,6 +1,6 @@
 import {
     ADD_CITY,
-    DELETE_CITY,
+    DELETE_CITY_BY_ITS_PLACE,
     RESTORE_DELETED_CITY,
     CACHE_DELETED_CITY,
 } from '../actionTypes';
@@ -12,25 +12,25 @@ import axios from 'axios';
 // Wrap returned object in parens so it's interpreted as an object expression and not as a block of code.
 export const addCity = city => ({
     type: ADD_CITY,
-    payload: city
+    city
 });
 
-const deleteCity = place => ({
-    type: DELETE_CITY,
-    payload: place
+const deleteCityByItsPlace = placeInList => ({
+    type: DELETE_CITY_BY_ITS_PLACE,
+    placeInList
 });
 
-const cacheDeletedCity = cityItem => ({
+const cacheDeletedCity = city => ({
     type: CACHE_DELETED_CITY,
-    payload: cityItem
+    payload: city
 });
 
 export const deleteAndCacheCityAndNotify = city => {
     return (dispatch, getState) => {
-        dispatch(deleteCity(city.place));
+        dispatch(deleteCityByItsPlace(city.placeInList));
         dispatch(cacheDeletedCity(city));
 
-        let deletedCity = getState().deletedCity.cityItem.city;
+        let deletedCity = getState().deletedCity;
         let notification = `${deletedCity.accentName}, ${deletedCity.country} removed from the list`;
         console.log('notification: ', notification);
 
