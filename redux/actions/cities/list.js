@@ -15,7 +15,7 @@ export const addCity = city => ({
     city
 });
 
-const deleteCityByItsPlace = placeInList => ({
+export const deleteCityByItsPlace = placeInList => ({
     type: DELETE_CITY_BY_ITS_PLACE,
     placeInList
 });
@@ -41,7 +41,7 @@ export const deleteAndCacheCityAndNotify = city => {
     }
 };
 
-const restoreCity = city => ({
+export const restoreCity = city => ({
     type: RESTORE_DELETED_CITY,
     city
 });

@@ -4,40 +4,43 @@ import { ADD_CITY, DELETE_CITY_BY_ITS_PLACE, RESTORE_DELETED_CITY } from '../../
 
 describe('city list actions', () => {
     it('should create an action to add a new city to the list', () => {
-        const cityAccentName = 'NYC';
-        const country = 'USA';
+        const city = {
+            accentName: 'NYC',
+            country: 'USA'
+        };
+
         const expectedAction = {
             type: ADD_CITY,
-            payload: {
-                nameAndCountry: 'NYC, USA'
+            city: {
+                accentName: 'NYC',
+                country: 'USA'
             }
         };
-        expect(cityListActions.addCity(cityAccentName, country)).toEqual(expectedAction)
+        expect(cityListActions.addCity(city)).toEqual(expectedAction)
     });
-    it('should create an action to remove the city from the list by its place', () => {
-        const place = 1;
+    it('should create an action to remove the city from the list by its placeInList', () => {
+        const placeInList = 1;
         const expectedAction = {
             type: DELETE_CITY_BY_ITS_PLACE,
-            payload: {
-                place: 1
-            }
+            placeInList: 1
+
         };
-        expect(cityListActions.deleteCity(place)).toEqual(expectedAction)
+        expect(cityListActions.deleteCityByItsPlace(placeInList)).toEqual(expectedAction)
     });
     it('should create an action to restore the last deleted city', () => {
         const city = {
-            place: 3,
-            nameAndCountry: 'NYC, USA'
+            placeInList: 3,
+            accentName: 'NYC',
+            country: 'USA'
         };
         const expectedAction = {
             type: RESTORE_DELETED_CITY,
-            payload: {
-                city: {
-                    place: 3,
-                    nameAndCountry: 'NYC, USA'
-                }
+            city: {
+                placeInList: 3,
+                accentName: 'NYC',
+                country: 'USA'
             }
         };
-        expect(cityListActions.restoreLastDeletedCity(city)).toEqual(expectedAction)
+        expect(cityListActions.restoreCity(city)).toEqual(expectedAction)
     });
 });

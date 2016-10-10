@@ -16,15 +16,17 @@ describe('city list reducers', () => {
         expect(
             cityListReducers(cityListBefore, {
                 type: ADD_CITY,
-                payload: {
-                    nameAndCountry: 'NYC'
+                city: {
+                    accentName: 'NYC',
+                    country: 'USA'
                 }
             })
         ).toEqual(
             [
                 {
-                    place: 0,
-                    nameAndCountry: 'NYC'
+                    placeInList: 0,
+                    accentName: 'NYC',
+                    country: 'USA'
                 }
             ]
         )
@@ -32,20 +34,24 @@ describe('city list reducers', () => {
     it('should remove the city from the list by its place', () => {
         const cityListBefore = [
             {
-                place: 0,
-                nameAndCountry: 'NYC'
+                placeInList: 0,
+                accentName: 'NYC',
+                country: 'USA'
             },
             {
-                place: 1,
-                nameAndCountry: 'LA'
+                placeInList: 1,
+                accentName: 'LA',
+                country: 'USA'
             },
             {
-                place: 2,
-                nameAndCountry: 'Frisco'
+                placeInList: 2,
+                accentName: 'Frisco',
+                country: 'USA'
             },
             {
-                place: 3,
-                nameAndCountry: 'The Hub'
+                placeInList: 3,
+                accentName: 'The Hub',
+                country: 'USA'
             }
         ];
         Object.freeze(cityListBefore);
@@ -54,39 +60,43 @@ describe('city list reducers', () => {
                 cityListBefore,
                 {
                     type: DELETE_CITY_BY_ITS_PLACE,
-                    payload: {
-                        place: 1
-                    }
+                    placeInList: 1
                 }
             )
         ).toEqual([
             {
-                place: 0,
-                nameAndCountry: 'NYC'
+                placeInList: 0,
+                accentName: 'NYC',
+                country: 'USA'
             },
             {
-                place: 1,
-                nameAndCountry: 'Frisco'
+                placeInList: 1,
+                accentName: 'Frisco',
+                country: 'USA'
             },
             {
-                place: 2,
-                nameAndCountry: 'The Hub'
+                placeInList: 2,
+                accentName: 'The Hub',
+                country: 'USA'
             }
         ])
     });
     it('should restore the last deleted city', () => {
         const cityListBefore = [
             {
-                place: 0,
-                nameAndCountry: 'NYC'
+                placeInList: 0,
+                accentName: 'NYC',
+                country: 'USA'
             },
             {
-                place: 1,
-                nameAndCountry: 'Frisco'
+                placeInList: 1,
+                accentName: 'Frisco',
+                country: 'USA'
             },
             {
-                place: 2,
-                nameAndCountry: 'The Hub'
+                placeInList: 2,
+                accentName: 'The Hub',
+                country: 'USA'
             }
         ];
         Object.freeze(cityListBefore);
@@ -95,31 +105,34 @@ describe('city list reducers', () => {
                 cityListBefore,
                 {
                     type: RESTORE_DELETED_CITY,
-                    payload: {
-                        city: {
-                            place: 1,
-                            nameAndCountry: 'LA'
-                        }
+                    city: {
+                        placeInList: 1,
+                        accentName: 'LA',
+                        country: 'USA'
                     }
                 }
             )
         ).toEqual(
             [
                 {
-                    place: 0,
-                    nameAndCountry: 'NYC'
+                    placeInList: 0,
+                    accentName: 'NYC',
+                    country: 'USA'
                 },
                 {
-                    place: 1,
-                    nameAndCountry: 'LA'
+                    placeInList: 1,
+                    accentName: 'LA',
+                    country: 'USA'
                 },
                 {
-                    place: 2,
-                    nameAndCountry: 'Frisco'
+                    placeInList: 2,
+                    accentName: 'Frisco',
+                    country: 'USA'
                 },
                 {
-                    place: 3,
-                    nameAndCountry: 'The Hub'
+                    placeInList: 3,
+                    accentName: 'The Hub',
+                    country: 'USA'
                 }
             ]
         )
