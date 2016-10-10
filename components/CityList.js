@@ -50,7 +50,7 @@ export default class CityList extends React.Component {
                 <List>
                     {
                         this.props.cityList.map(city =>
-                            <Chip key={city.placeInList} onRequestDelete={() => console.log('TODO')}>
+                            <Chip key={city.placeInList} onRequestDelete={() => this.props.cityListActions.deleteAndCacheCityAndNotify(city)}>
                                 {`${city.suggest.output} ${moment().tz(city.timeZoneId).format()} (${city.timeZoneName})`}
                             </Chip>
                         )

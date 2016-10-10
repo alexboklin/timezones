@@ -22,7 +22,7 @@ const deleteCityByItsPlace = placeInList => ({
 
 const cacheDeletedCity = city => ({
     type: CACHE_DELETED_CITY,
-    payload: city
+    city
 });
 
 export const deleteAndCacheCityAndNotify = city => {
@@ -43,9 +43,7 @@ export const deleteAndCacheCityAndNotify = city => {
 
 const restoreCity = city => ({
     type: RESTORE_DELETED_CITY,
-    payload: {
-        city
-    }
+    city
 });
 
 export const restoreDeletedCityAndNotify = city => {
