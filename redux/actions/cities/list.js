@@ -32,7 +32,7 @@ export const deleteAndCacheCityAndNotify = city => {
 
         let deletedCity = getState().deletedCity;
         let notification = `${deletedCity.accentName}, ${deletedCity.country} removed from the list`;
-        console.log('notification: ', notification);
+        // console.log('notification: ', notification);
 
         dispatch(changeNotificationText(notification));
 
@@ -46,11 +46,14 @@ const restoreCity = city => ({
     city
 });
 
-export const restoreDeletedCityAndNotify = city => {
-    return dispatch => {
+export const restoreDeletedCityAndNotify = () => {
+    console.log('RESTORING ');
 
+    return (dispatch, getState) => {
+        console.log('RESTORING ', getState().deletedCity);
+
+        dispatch(restoreCity(getState().deletedCity));
     }
-
 };
 
 export const addCityToListAndNotify = id => {
@@ -62,7 +65,7 @@ export const addCityToListAndNotify = id => {
     // TODO: can we use all here?
     return (dispatch, getState) => {
 
-        if (getState().cityList.find(cityItem => cityItem.city.id == id) !== undefined) {
+        if (getState().cityList.find(city => city.id == id) !== undefined) {
             // TODO: dispatch a popup?
             return;
         }

@@ -15,12 +15,18 @@ let cityList = (cityList = [], action) => {
             return [...cityList.slice(0, action.placeInList), ...cityList.slice(action.placeInList + 1)];
 
         case RESTORE_DELETED_CITY:
+            // console.log([
+            //     ...cityList.slice(0, action.city.placeInList),
+            //     action.city,
+            //     ...cityList.slice(action.city.placeInList).forEach(city.placeInList+1)
+            // ]);
+
             return [
-                ...cityList.slice(0, action.city.placeInList),
-                action.city,
-                ...cityList.slice(action.city.placeInList).map(
-                    city => city.placeInList+1
-                ) // TODO: use forEach?
+                // ...cityList.slice(0, action.city.placeInList),
+                // action.city,
+                // ...cityList.slice(action.city.placeInList).map(
+                //     city => city.placeInList+1
+                // ) // TODO: use forEach?
             ];
 
         default:

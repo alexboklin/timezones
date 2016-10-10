@@ -31,9 +31,14 @@ class AutoCompleteForm extends React.Component {
     // See https://github.com/erikras/redux-form/issues/190 for solution
     // TODO: now can remove onNewRequest from the Field
     handleNewRequest = data => {
+        // console.log('data: ', data);
+        // console.log('this.props.citySuggestions: ', this.props.citySuggestions);
+
         let citySuggestionWithId = this.props.citySuggestions.find(
             citySuggestion => citySuggestion.text == data.citySuggestion
         );
+
+        // console.log('citySuggestionWithId: ', citySuggestionWithId);
 
         this.props.cityListActions.addCityToListAndNotify(citySuggestionWithId.id);
     };
