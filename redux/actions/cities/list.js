@@ -47,7 +47,7 @@ const restoreCity = city => ({
 });
 
 export const restoreDeletedCityAndNotify = () => {
-    console.log('RESTORING ');
+    // TODO: when undoing adding a city, getState().deletedCity is null!
 
     return (dispatch, getState) => {
         console.log('RESTORING ', getState().deletedCity);

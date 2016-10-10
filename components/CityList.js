@@ -10,10 +10,10 @@ export default class CityList extends React.Component {
             seconds: 0,
             interval: null,
 
-            deletedCity: {}, // TODO: make this a part of the state?
-            snackBarAutoHideDuration: 4000,
-            snackBarMessage: '',
-            snackBarIsOpen: false
+            // deletedCity: {}, // TODO: make this a part of the state?
+            // snackBarAutoHideDuration: 4000,
+            // snackBarMessage: '',
+            // snackBarIsOpen: false
         }
     };
 
@@ -62,9 +62,9 @@ export default class CityList extends React.Component {
 };
 
 // TODO: update
-CityList.PropTypes = {
-    cities: PropTypes.arrayOf(PropTypes.shape({
-        id:PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired
-    }).isRequired).isRequired
-};
+// CityList.PropTypes = {
+//     cities: PropTypes.arrayOf(PropTypes.shape({
+//         id:PropTypes.number.isRequired,
+//         name: PropTypes.string.isRequired
+//     }).isRequired).isRequired
+// };

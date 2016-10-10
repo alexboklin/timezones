@@ -1,7 +1,7 @@
 import React from 'react';
 import AutoCompleteForm from './AutoCompleteForm';
 import CityInputSnackbar from './CityInputSnackbar';
-import CityListSnackbar from './CityInputSnackbar';
+import CityListSnackbar from './CityListSnackbar';
 import CityList from './CityList';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
