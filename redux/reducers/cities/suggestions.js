@@ -14,12 +14,7 @@ let citySuggestions = (citySuggestions = [], action) => {
         //     ];
 
         case RECEIVE_CITY_SUGGESTIONS:
-            console.log("action.payload.citySuggestions: ", action.payload.citySuggestions);
-
-            return [
-                // ...citySuggestions,
-                ...action.payload.citySuggestions.map(({ id, text }) => ({id, text}))
-            ];
+            return [...action.citySuggestions.map(({ id, text }) => ({id, text}))];
 
 
         default:

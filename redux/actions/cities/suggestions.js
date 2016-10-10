@@ -41,9 +41,7 @@ let requestCitySuggestions = input => ({
     }
 });
 
-let receiveCitySuggestions = data => ({
+let receiveCitySuggestions = citySuggestions => ({
     type: RECEIVE_CITY_SUGGESTIONS,
-    payload: {
-        citySuggestions: data
-    }
+    citySuggestions
 });
