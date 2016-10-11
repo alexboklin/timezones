@@ -1,9 +1,12 @@
 import {
     ADD_CITY,
+    TOGGLE_ADDING_CITY_FLAG,
+    UNTOGGLE_ADDING_CITY_FLAG,
     DELETE_CITY_BY_ITS_PLACE,
     RESTORE_DELETED_CITY,
     CACHE_DELETED_CITY,
-    CLEAR_CACHED_DELETED_CITY
+    CLEAR_CACHED_DELETED_CITY,
+
 } from '../actionTypes';
 
 import {
@@ -18,6 +21,21 @@ import axios from 'axios';
 export const addCity = city => ({
     type: ADD_CITY,
     city
+});
+
+const toggleAddingCityFlag = () => ({
+    type : TOGGLE_ADDING_CITY_FLAG
+});
+
+// export const addCityAndToggleAddingCityFlag = city => {
+//     return (dispatch, getState) => {
+//         dispatch(addCity(city));
+//         dispatch(toggleAddingCityFlag());
+//     }
+// };
+
+const unToggleAddingCityFlag = () => ({
+    type : UNTOGGLE_ADDING_CITY_FLAG
 });
 
 export const deleteCityByItsPlace = placeInList => ({
@@ -38,11 +56,14 @@ export const clearCachedDeletedCityAndHideNotification = () => {
     return (dispatch, getState) => {
         dispatch(hideNotification());
         dispatch(clearCachedDeletedCity());
+        dispatch(unToggleAddingCityFlag());
     }
 };
 
 export const deleteAndCacheCityAndNotify = city => {
     return (dispatch, getState) => {
+        console.log('DELETING...');
+
         dispatch(deleteCityByItsPlace(city.placeInList));
         dispatch(cacheDeletedCity(city));
 
@@ -53,6 +74,8 @@ export const deleteAndCacheCityAndNotify = city => {
         dispatch(changeNotificationText(notification));
 
         dispatch(showNotification());
+
+        dispatch(unToggleAddingCityFlag());
 
     }
 };
@@ -68,23 +91,25 @@ export const restoreDeletedCityAndNotify = () => {
     return (dispatch, getState) => {
         console.log('RESTORING ', getState().deletedCity);
 
+
         dispatch(restoreCity(getState().deletedCity));
+        dispatch(unToggleAddingCityFlag());
     }
 };
 
 export const addCityToListAndNotify = id => {
-
     // See: http://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
     let timestamp = Math.floor(Date.now() / 1000);
     const apiKey = 'AIzaSyCvwQxLACrb-Dr70mBIKH7DhLIMOgJXUX8';
 
     // TODO: can we use all here?
     return (dispatch, getState) => {
-
         if (getState().cityList.find(city => city.id == id) !== undefined) {
             // TODO: dispatch a popup?
             return;
         }
+
+        dispatch(toggleAddingCityFlag());
 
         getCityById(id)
         .then(

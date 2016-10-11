@@ -9,7 +9,6 @@ export let showNotification = (showNotification = false, action) => {
         case SHOW_NOTIFICATION:
             return true;
 
-        // TODO: do we need this one?
         case HIDE_NOTIFICATION:
             return false;
 

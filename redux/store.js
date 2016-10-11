@@ -7,7 +7,7 @@ import thunk from 'redux-thunk';
 // TODO: check https://github.com/gaearon/redux-thunk#installation
 let finalCreateStore = compose(
   applyMiddleware(
-      logger(),
+      // logger(),
       thunk
   )
 )(createStore);
