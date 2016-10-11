@@ -10,7 +10,7 @@ const CityListSnackbar = (props) => {
                 action="undo"
                 autoHideDuration={4000}
                 onActionTouchTap={props.cityListActions.restoreDeletedCityAndNotify}
-                onRequestClose={props.notificationActions.hideNotification}
+                onRequestClose={props.cityListActions.clearCachedDeletedCityAndHideNotification}
             />
         </div>
     );

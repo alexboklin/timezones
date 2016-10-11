@@ -3,9 +3,14 @@ import {
     DELETE_CITY_BY_ITS_PLACE,
     RESTORE_DELETED_CITY,
     CACHE_DELETED_CITY,
+    CLEAR_CACHED_DELETED_CITY
 } from '../actionTypes';
 
-import { showNotification, changeNotificationText } from './notification';
+import {
+    showNotification,
+    changeNotificationText,
+    hideNotification
+} from './notification';
 
 import axios from 'axios';
 
@@ -24,6 +29,17 @@ const cacheDeletedCity = city => ({
     type: CACHE_DELETED_CITY,
     city
 });
+
+const clearCachedDeletedCity = () => ({
+    type: CLEAR_CACHED_DELETED_CITY
+});
+
+export const clearCachedDeletedCityAndHideNotification = () => {
+    return (dispatch, getState) => {
+        dispatch(hideNotification());
+        dispatch(clearCachedDeletedCity());
+    }
+};
 
 export const deleteAndCacheCityAndNotify = city => {
     return (dispatch, getState) => {
