@@ -34,7 +34,7 @@ const toggleAddingCityFlag = () => ({
 //     }
 // };
 
-const unToggleAddingCityFlag = () => ({
+const untoggleAddingCityFlag = () => ({
     type : UNTOGGLE_ADDING_CITY_FLAG
 });
 
@@ -54,9 +54,9 @@ const clearCachedDeletedCity = () => ({
 
 export const clearCachedDeletedCityAndHideNotification = () => {
     return (dispatch, getState) => {
-        dispatch(hideNotification());
         dispatch(clearCachedDeletedCity());
-        dispatch(unToggleAddingCityFlag());
+        dispatch(untoggleAddingCityFlag());
+        dispatch(hideNotification());
     }
 };
 
@@ -73,9 +73,8 @@ export const deleteAndCacheCityAndNotify = city => {
 
         dispatch(changeNotificationText(notification));
 
+        dispatch(untoggleAddingCityFlag());
         dispatch(showNotification());
-
-        dispatch(unToggleAddingCityFlag());
 
     }
 };
@@ -90,10 +89,9 @@ export const restoreDeletedCityAndNotify = () => {
 
     return (dispatch, getState) => {
         console.log('RESTORING ', getState().deletedCity);
-
-
         dispatch(restoreCity(getState().deletedCity));
-        dispatch(unToggleAddingCityFlag());
+        dispatch(untoggleAddingCityFlag());
+        dispatch(hideNotification());
     }
 };
 
