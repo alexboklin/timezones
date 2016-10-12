@@ -2,8 +2,6 @@ import React from 'react';
 import Snackbar from 'material-ui/Snackbar';
 
 const CityInputSnackbar = (props) => {
-    console.log('props.hasJustAddedCity: ', props.hasJustAddedCity);
-
     return (
         <div className="text-center">
             <Snackbar

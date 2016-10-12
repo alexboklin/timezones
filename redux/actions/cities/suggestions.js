@@ -8,11 +8,9 @@ import axios from 'axios';
 export const fetchCitySuggestions = input => {
 
     return dispatch => {
-        // dispatch(requestCitySuggestions(input));
 
         return axios.get(`http://localhost:8888/api/city?name=${input}`)
             .then(response => {
-                // console.log("response: ", response.data); //TODO: remove
                 dispatch(receiveCitySuggestions(response.data));
             })
             .catch(error => {

@@ -27,13 +27,6 @@ const toggleAddingCityFlag = () => ({
     type : TOGGLE_ADDING_CITY_FLAG
 });
 
-// export const addCityAndToggleAddingCityFlag = city => {
-//     return (dispatch, getState) => {
-//         dispatch(addCity(city));
-//         dispatch(toggleAddingCityFlag());
-//     }
-// };
-
 const untoggleAddingCityFlag = () => ({
     type : UNTOGGLE_ADDING_CITY_FLAG
 });
@@ -62,15 +55,11 @@ export const clearCachedDeletedCityAndHideNotification = () => {
 
 export const deleteAndCacheCityAndNotify = city => {
     return (dispatch, getState) => {
-        console.log('DELETING...');
-
         dispatch(deleteCityByItsPlace(city.placeInList));
         dispatch(cacheDeletedCity(city));
 
         let deletedCity = getState().deletedCity;
         let notification = `${deletedCity.accentName}, ${deletedCity.country} removed from the list`;
-        // console.log('notification: ', notification);
-
         dispatch(changeNotificationText(notification));
 
         dispatch(untoggleAddingCityFlag());
@@ -85,10 +74,7 @@ export const restoreCity = city => ({
 });
 
 export const restoreDeletedCityAndNotify = () => {
-    // TODO: when undoing adding a city, getState().deletedCity is null!
-
     return (dispatch, getState) => {
-        console.log('RESTORING ', getState().deletedCity);
         dispatch(restoreCity(getState().deletedCity));
         dispatch(untoggleAddingCityFlag());
         dispatch(hideNotification());
@@ -100,7 +86,6 @@ export const addCityToListAndNotify = id => {
     let timestamp = Math.floor(Date.now() / 1000);
     const apiKey = 'AIzaSyCvwQxLACrb-Dr70mBIKH7DhLIMOgJXUX8';
 
-    // TODO: can we use all here?
     return (dispatch, getState) => {
         if (getState().cityList.find(city => city.id == id) !== undefined) {
             // TODO: dispatch a popup?
@@ -112,25 +97,17 @@ export const addCityToListAndNotify = id => {
         getCityById(id)
         .then(
             response => {
-                console.log("Got city by id: ", response.data);
-
-                // TODO: create a City model and parseJson method for it
                 let city = response.data;
 
                 getTimezone(city, timestamp, apiKey)
                 .then(
                     response => {
-                        // console.log('Got response from Google Maps API: ', response.data);
                         city.timeZoneId = response.data.timeZoneId;
                         city.timeZoneName = response.data.timeZoneName;
                         dispatch(addCity(city));
 
                         let notification = `${city.accentName}, ${city.country} added to the list`;
-                        // let notification = `${deletedCity.accentName}, ${deletedCity.country} removed from the list`;
-                        console.log('notification: ', notification);
-
                         dispatch(changeNotificationText(notification));
-
                         dispatch(showNotification());
                 })
             }
