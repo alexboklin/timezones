@@ -32,7 +32,7 @@ let cityList = (cityList = [], action) => {
                         city.placeInList += 1;
                         return city;
                     }
-                ) // TODO: use forEach?
+                )
             ];
 
         default:

@@ -23,11 +23,11 @@ export const addCity = city => ({
     city
 });
 
-const toggleAddingCityFlag = () => ({
+export const toggleAddingCityFlag = () => ({
     type : TOGGLE_ADDING_CITY_FLAG
 });
 
-const untoggleAddingCityFlag = () => ({
+export const untoggleAddingCityFlag = () => ({
     type : UNTOGGLE_ADDING_CITY_FLAG
 });
 
@@ -36,12 +36,12 @@ export const deleteCityByItsPlace = placeInList => ({
     placeInList
 });
 
-const cacheDeletedCity = city => ({
+export const cacheDeletedCity = city => ({
     type: CACHE_DELETED_CITY,
     city
 });
 
-const clearCachedDeletedCity = () => ({
+export const clearCachedDeletedCity = () => ({
     type: CLEAR_CACHED_DELETED_CITY
 });
 
