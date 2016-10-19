@@ -20,8 +20,6 @@ const initialState = {
     showNotification: false,
     notificationText: '',
     hasJustAddedCity: false,
-    // isRemovingACity: false,
-    // isRestoringACity: false
 };
 
 const store = configureStore(initialState);

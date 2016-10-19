@@ -9,11 +9,6 @@ export default class CityList extends React.Component {
         this.state = {
             seconds: 0,
             interval: null,
-
-            // deletedCity: {}, // TODO: make this a part of the state?
-            // snackBarAutoHideDuration: 4000,
-            // snackBarMessage: '',
-            // snackBarIsOpen: false
         }
     };
 
@@ -34,23 +29,14 @@ export default class CityList extends React.Component {
         clearInterval(this.state.interval);
     }
 
-    // handleRequestDelete = (city) => {
-    //     this.setState({
-    //         deletedCity: city,
-    //         snackBarIsOpen: true,
-    //         snackBarMessage: `${city.text} removed from the list`
-    //     });
-    //
-    //     this.props.cityListActions.deleteAndCacheCityAndNotify(city);
-    // };
-
     render() {
         return (
             <div>
                 <List>
                     {
                         this.props.cityList.map(city =>
-                            <Chip key={city.placeInList} onRequestDelete={() => this.props.cityListActions.deleteAndCacheCityAndNotify(city)}>
+                            <Chip key={city.placeInList}
+                                  onRequestDelete={() => this.props.cityListActions.deleteAndCacheCityAndNotify(city)}>
                                 {`${city.suggest.output} ${moment().tz(city.timeZoneId).format()} (${city.timeZoneName})`}
                             </Chip>
                         )
