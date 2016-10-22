@@ -5,7 +5,9 @@ var HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 	inject: 'body'
 });
 
+// Check https://webpack.github.io/docs/configuration.html for more info on the subject.
 module.exports = {
+	devtool: '#eval-source-map',
 	entry: [
 		'./app/index.js'
 	],
