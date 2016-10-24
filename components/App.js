@@ -10,7 +10,6 @@ import * as notificationActions from '../redux/actions/cities/notification'
 
 // Here, we inject the slices of the state (and listen to it) via mapStateToProps
 // and all action creators as props.
-// TODO: use ...props?
 const App = ({ hasJustAddedCity,
     cityList, citySuggestions,
     cityListActions, citySuggestionsActions,

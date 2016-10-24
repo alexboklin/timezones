@@ -31,7 +31,6 @@ export const fetchCitySuggestions = input => {
 
 };
 
-// TODO: will be responsible for the "currentCityInput" slice of the state
 let requestCitySuggestions = input => ({
     type: REQUEST_CITY_SUGGESTIONS,
     payload: {
