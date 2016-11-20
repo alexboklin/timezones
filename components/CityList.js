@@ -1,32 +1,31 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { List } from 'material-ui/List';
 import Chip from 'material-ui/Chip';
 import moment from 'moment-timezone';
 
+// On timer implementation, see:
+// https://facebook.github.io/react/docs/state-and-lifecycle.html#adding-lifecycle-methods-to-a-class
 export default class CityList extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            seconds: 0,
-            interval: null,
-        }
-    };
+        this.state = {date: new Date()};
+    }
 
-    // See http://stackoverflow.com/questions/36299174/setinterval-in-a-react-app
-    // Also see https://facebook.github.io/react/docs/reusable-components.html#mixins
     componentDidMount() {
-        let interval = setInterval(() => {
-            this.setState({
-                seconds: this.state.seconds + 1
-            })
-        }, 1000);
-        this.setState({
-            interval: interval
-        });
+        this.timerID = setInterval(
+            () => this.tick(),
+            1000
+        );
     }
 
     componentWillUnmount() {
-        clearInterval(this.state.interval);
+        clearInterval(this.timerID);
+    }
+
+    tick() {
+        this.setState({
+            date: new Date()
+        });
     }
 
     render() {
@@ -44,8 +43,8 @@ export default class CityList extends React.Component {
                 </List>
             </div>
         )
-    };
-};
+    }
+}
 
 // TODO: update
 // CityList.PropTypes = {
