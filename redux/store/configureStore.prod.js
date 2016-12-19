@@ -1,6 +1,8 @@
 import { applyMiddleware, createStore, compose } from 'redux';
-import rootReducer from '../reducers/rootReducer';
 import thunk from 'redux-thunk';
+import { autoRehydrate } from 'redux-persist';
+
+import rootReducer from '../reducers/rootReducer';
 
 // TODO: sync initialState with localStorage if necessary
 const configureStore = () => {
@@ -10,7 +12,8 @@ const configureStore = () => {
         rootReducer,
         // initialState,
         compose(
-            applyMiddleware(...middlewares)
+            applyMiddleware(...middlewares),
+            autoRehydrate()
         )
     );
 };

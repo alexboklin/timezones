@@ -18,7 +18,7 @@ module.exports = {
 	module: {
 		loaders: [
 			{
-				test: /\.js$/,
+				test: /\.jsx?$/,
 				exclude: /node_modules/,
 				loader: 'babel-loader',
 				query: {
@@ -26,7 +26,7 @@ module.exports = {
 		        }
 			},
             {
-                include: /\.json$/, loaders: ["json-loader"],
+                include: /\.json$/, loaders: ["json-loader"]
             }
 		]
 	},

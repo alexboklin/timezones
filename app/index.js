@@ -1,9 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from '../components/App';
-import configureStore from '../redux/store/configureStore';
-import { Provider } from 'react-redux';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+import AppProvider from '../redux/AppProvider';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
@@ -12,12 +10,6 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 ReactDOM.render(
-    // <Provider store> Makes the Redux store available to the connect()
-    // calls in the component hierarchy below.
-    <Provider store={configureStore()}>
-        <MuiThemeProvider>
-            <App />
-        </MuiThemeProvider>
-    </Provider>,
+    <AppProvider/>,
     document.getElementById('app')
 );
