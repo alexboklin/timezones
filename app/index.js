@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from '../components/App';
-import configureStore from '../redux/configureStore';
+import configureStore from '../redux/store/configureStore';
 import { Provider } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
