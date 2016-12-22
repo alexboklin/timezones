@@ -31,14 +31,15 @@ export const fetchCitySuggestions = input => {
 
 };
 
-let requestCitySuggestions = input => ({
+// TODO: simply input, no payload key
+const requestCitySuggestions = input => ({
     type: REQUEST_CITY_SUGGESTIONS,
     payload: {
         input
     }
 });
 
-let receiveCitySuggestions = citySuggestions => ({
+const receiveCitySuggestions = citySuggestions => ({
     type: RECEIVE_CITY_SUGGESTIONS,
     citySuggestions
 });
