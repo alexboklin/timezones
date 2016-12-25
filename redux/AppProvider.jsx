@@ -12,10 +12,6 @@ const config = {
     whitelist: ['cityList']
 };
 
-// TODO: remove when done testing.
-console.log(`TEST_KEY is: ${process.env.TEST_KEY}`);
-console.log(`SECRET_API_KEY is: ${process.env.SECRET_API_KEY}`);
-
 export default class AppProvider extends Component {
 
     constructor() {

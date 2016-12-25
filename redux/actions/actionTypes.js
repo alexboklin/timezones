@@ -1,3 +1,7 @@
+/*TODO: utility libraries to aid in generating action creators:
+https://github.com/pauldijou/redux-act
+https://github.com/acdlite/redux-actions*/
+
 export const ADD_CITY = 'ADD_CITY';
 export const TOGGLE_ADDING_CITY_FLAG = 'TOGGLE_ADDING_CITY_FLAG';
 export const UNTOGGLE_ADDING_CITY_FLAG = 'UNTOGGLE_ADDING_CITY_FLAG';
