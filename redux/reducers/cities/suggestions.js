@@ -14,8 +14,7 @@ let citySuggestions = (citySuggestions = [], action) => {
         //     ];
 
         case RECEIVE_CITY_SUGGESTIONS:
-            return [...action.citySuggestions.map(({ id, text }) => ({id, text}))];
-
+            return [...action.citySuggestions];
 
         default:
             return citySuggestions;

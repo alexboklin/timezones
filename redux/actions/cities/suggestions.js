@@ -31,7 +31,7 @@ export const fetchCitySuggestions = input => {
 
 };
 
-// TODO: simply input, no payload key
+// TODO: simply input, no payload key -- right now commented out in the reducer
 const requestCitySuggestions = input => ({
     type: REQUEST_CITY_SUGGESTIONS,
     payload: {
