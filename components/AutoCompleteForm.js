@@ -1,72 +1,37 @@
 import React from 'react';
-import { AutoComplete } from 'redux-form-material-ui';
-import { AutoComplete as MUIAutoComplete } from 'material-ui';
-import { Field, reduxForm } from 'redux-form';
+import AutoComplete from 'material-ui/AutoComplete';
 
-const validate = values => {
-    const errors = {};
-    const requiredFields = ['citySuggestion'];
-    requiredFields.forEach(field => {
-        if (!values[field]) {
-            errors[field] = 'Required';
-        }
-    });
-
-    // See: https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/RegExp
-    if (values.citySuggestion && !/^[A-Za-z\s]{1,},[A-Za-z\s]{1,}$/.test(values.citySuggestion)) {
-        errors.citySuggestion = 'City and country name separated by comma';
-    }
-    return errors;
+const dataSourceConfig = {
+    text: 'cityName',
+    value: 'cityId',
 };
 
-class AutoCompleteForm extends React.Component {
-    constructor(props) {
-        super(props);
-    };
-
+export default class AutoCompleteForm extends React.Component {
+    // Callback function that is fired when the user updates the TextField
     handleUpdateInput = (searchText, dataSource) => {
         this.props.citySuggestionsActions.fetchCitySuggestions(searchText);
     };
 
-    // See https://github.com/erikras/redux-form/issues/190 for solution
-    handleNewRequest = data => {
-        let citySuggestionWithId = this.props.citySuggestions.find(
-            citySuggestion => citySuggestion.text == data.citySuggestion
-        );
-
-        this.props.cityListActions.addCityToListAndNotify(citySuggestionWithId.id);
-        this.props.reset();
+    // Callback function that is fired when a list item is selected, or enter is pressed in the TextField
+    handleNewRequest = (chosenRequest, index) => {
+        // TODO: preserve format that comes from the server: city (country)
+        this.props.cityListActions.addCityToListAndNotify(chosenRequest.cityId);
     };
 
-    // See: http://erikras.github.io/redux-form-material-ui/
-    // Also see: http://redux-form.com/6.0.5/examples/selectingFormValues/
     render() {
-        const { handleSubmit, pristine, submitting } = this.props;
-
         return (
-            // See: http://redux-form.com/6.0.5/docs/api/Props.md/
-            <form onSubmit={handleSubmit(this.handleNewRequest)}>
-                <div>
-                    <Field
-                        name="citySuggestion"
-                        component={AutoComplete}
-                        filter={MUIAutoComplete.caseInsensitiveFilter}
-                        floatingLabelText="Type the city -- case insensitive"
-                        dataSource={this.props.citySuggestions.map(suggestion => suggestion.text)}
-                        onUpdateInput={this.handleUpdateInput}
-                    />
-                </div>
-                <div>
-                    <button type="submit" disabled={pristine || submitting}>Submit</button>
-                </div>
-            </form>
+            <AutoComplete
+                name="citySuggestion"
+                filter={AutoComplete.caseInsensitiveFilter}
+                floatingLabelText="Type the city -- case insensitive"
+                dataSource={this.props.citySuggestions.map(suggestion => ({
+                    cityName: suggestion.text,
+                    cityId: suggestion.id
+                }))}
+                dataSourceConfig={dataSourceConfig}
+                onUpdateInput={this.handleUpdateInput}
+                onNewRequest={this.handleNewRequest}
+            />
         );
     }
 }
-
-AutoCompleteForm = reduxForm({
-    form: 'autoCompleteForm',
-    validate
-})(AutoCompleteForm);
-
-export default AutoCompleteForm
