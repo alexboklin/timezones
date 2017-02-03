@@ -59,7 +59,7 @@ export const deleteAndCacheCityAndNotify = city => {
         dispatch(cacheDeletedCity(city));
 
         let deletedCity = getState().deletedCity;
-        let notification = `${deletedCity.accentName}, ${deletedCity.country} removed from the list`;
+        let notification = `${deletedCity.name} removed from the list`;
         dispatch(changeNotificationText(notification));
 
         dispatch(untoggleAddingCityFlag());
@@ -81,32 +81,45 @@ export const restoreDeletedCityAndNotify = () => {
     }
 };
 
-export const addCityToListAndNotify = id => {
+export const addCityToListAndNotify = ({ cityId, cityName }) => {
     // See: http://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
     let timestamp = Math.floor(Date.now() / 1000);
-    const apiKey = 'AIzaSyCvwQxLACrb-Dr70mBIKH7DhLIMOgJXUX8';
+    const apiKey = 'AIzaSyCvwQxLACrb-Dr70mBIKH7DhLIMOgJXUX8'; // TODO: hide in .env file
 
     return (dispatch, getState) => {
-        if (getState().cityList.find(city => city.id == id) !== undefined) {
+        // TODO: use index passed as an argument for this.
+        if (getState().cityList.find(city => city.id === cityId) !== undefined) {
             // TODO: dispatch a popup?
             return;
         }
 
         dispatch(toggleAddingCityFlag());
 
-        getCityById(id)
+        getCityById(cityId)
         .then(
             response => {
-                let city = response.data;
+                let serverCityInfo = response.data;
 
-                getTimezone(city, timestamp, apiKey)
+                getTimezone(serverCityInfo, timestamp, apiKey)
                 .then(
                     response => {
-                        city.timeZoneId = response.data.timeZoneId;
-                        city.timeZoneName = response.data.timeZoneName;
-                        dispatch(addCity(city));
+                        let mapsAPICityInfo = response.data;
 
-                        let notification = `${city.accentName}, ${city.country} added to the list`;
+                        console.log('serverCityInfo:', serverCityInfo);
+                        console.log('mapsAPICityInfo:', mapsAPICityInfo);
+
+                        let cityToAdd = {
+                            name: cityName,
+                            suggest: serverCityInfo.suggest,
+                            latitude: serverCityInfo.latitude,
+                            longitude: serverCityInfo.longitude,
+                            timeZoneId: mapsAPICityInfo.timeZoneId,
+                            timeZoneName: mapsAPICityInfo.timeZoneName
+
+                        };
+                        dispatch(addCity(cityToAdd));
+
+                        let notification = `${cityName} added to the list`;
                         dispatch(changeNotificationText(notification));
                         dispatch(showNotification());
                 })
@@ -132,8 +145,8 @@ const getCityById = id => {
     return axios.get(`http://localhost:8888/api/city/${id}`)
 };
 
-const getTimezone = (city, timestamp, apiKey) => {
+const getTimezone = ({ latitude, longitude }, timestamp, apiKey) => {
     // https://developers.google.com/maps/documentation/timezone/intro
-    return axios.get(`https://maps.googleapis.com/maps/api/timezone/json?location=${city.latitude},${city.longitude}
+    return axios.get(`https://maps.googleapis.com/maps/api/timezone/json?location=${latitude},${longitude}
                     &timestamp=${timestamp}&key=${apiKey}`)
 };

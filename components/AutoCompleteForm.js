@@ -18,7 +18,7 @@ export default class AutoCompleteForm extends React.Component {
     // Callback function that is fired when a list item is selected, or enter is pressed in the TextField
     handleNewRequest = (chosenRequest, index) => {
         // TODO: preserve format that comes from the server: city (country)
-        this.props.cityListActions.addCityToListAndNotify(chosenRequest.cityId);
+        this.props.cityListActions.addCityToListAndNotify(chosenRequest);
         this.setState({searchText: ''});
     };
 
