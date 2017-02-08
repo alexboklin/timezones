@@ -19,10 +19,15 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 	inject: 'body'
 });
 
+/*On how to use Hot Module Replacement + React Hot Loader, see:
+https://medium.com/@rajaraodv/webpacks-hmr-react-hot-loader-the-missing-manual-232336dc0d96#.npgb2r5nn
+http://gaearon.github.io/react-hot-loader/getstarted/*/
 module.exports = {
 	devtool: inProductionMode ? undefined : 'cheap-module-eval-source-map',
 	entry: [
-		'./app/index.js'
+		'webpack-dev-server/client?http://localhost:8080', // <-- Enables websocket connection (needs url and port)
+		'webpack/hot/only-dev-server', // <-- to perform HMR in the browser; "only" prevents reload on syntax errors
+		'./app/index.js' // The appʼs entry point
 	],
 	output: {
 		path: __dirname + '/dist',
@@ -33,7 +38,8 @@ module.exports = {
 			{
 				test: /\.jsx?$/,
 				exclude: /node_modules/,
-				use: 'babel-loader'
+				// include: path.join(__dirname, src) <-- right now there's no src folder
+				use: ['react-hot-loader', 'babel-loader']
 			}
 		]
 	},
@@ -42,6 +48,12 @@ module.exports = {
     },
 	plugins: [
 	    HtmlWebpackPluginConfig,
-        new webpack.DefinePlugin({'process.env': dotEnvVars})
-    ]
+        new webpack.DefinePlugin({'process.env': dotEnvVars}),
+		new webpack.HotModuleReplacementPlugin() // <-- To generate hot update chunks
+        // TODO: [HMR] Consider using the NamedModulesPlugin for module names.
+    ],
+	devServer: {
+		hot: true, // <-- Enables HMR in webpack-dev-server and in libs running in the browser
+		contentBase: './app'
+	}
 };
