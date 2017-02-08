@@ -9,6 +9,9 @@ const dotEnvVars = Object.keys(dotEnvConfig).
 	NODE_ENV: JSON.stringify(process.env.NODE_ENV)
 });
 
+const NODE_ENV = process.env.NODE_ENV;
+const inProductionMode = NODE_ENV === 'production';
+
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 	template: __dirname + '/app/index.html',
@@ -18,7 +21,7 @@ var HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 
 // Check https://webpack.github.io/docs/configuration.html for more info on the subject.
 module.exports = {
-	devtool: '#eval-source-map',
+	devtool: inProductionMode ? undefined : 'cheap-module-eval-source-map',
 	entry: [
 		'./app/index.js'
 	],
