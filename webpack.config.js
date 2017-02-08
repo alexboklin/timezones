@@ -12,14 +12,13 @@ const dotEnvVars = Object.keys(dotEnvConfig).
 const NODE_ENV = process.env.NODE_ENV;
 const inProductionMode = NODE_ENV === 'production';
 
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 	template: __dirname + '/app/index.html',
 	filename: 'index.html',
 	inject: 'body'
 });
 
-// Check https://webpack.github.io/docs/configuration.html for more info on the subject.
 module.exports = {
 	devtool: inProductionMode ? undefined : 'cheap-module-eval-source-map',
 	entry: [
@@ -30,22 +29,16 @@ module.exports = {
 		filename: 'index_bundle.js'
 	},
 	module: {
-		loaders: [
+		rules: [
 			{
 				test: /\.jsx?$/,
 				exclude: /node_modules/,
-				loader: 'babel-loader',
-				query: {
-		          presets: ['react', 'es2015', 'stage-0']
-		        }
-			},
-            {
-                include: /\.json$/, loaders: ["json-loader"]
-            }
+				use: 'babel-loader'
+			}
 		]
 	},
     resolve: {
-        extensions: ['', '.json', '.jsx', '.js']
+        extensions: ['.json', '.jsx', '.js']
     },
 	plugins: [
 	    HtmlWebpackPluginConfig,
