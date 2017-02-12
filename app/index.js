@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import AppProvider from '../redux/AppProvider';
+import AppProvider from './redux/AppProvider';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 

@@ -30,15 +30,15 @@ module.exports = {
 		'./app/index.js' // The appʼs entry point
 	],
 	output: {
-		path: __dirname + '/dist',
-		filename: 'index_bundle.js'
+		path: __dirname + '/build',
+		filename: 'bundle.js'
 	},
 	module: {
 		rules: [
 			{
 				test: /\.jsx?$/,
 				exclude: /node_modules/,
-				// include: path.join(__dirname, src) <-- right now there's no src folder
+				// include: path.join(__dirname, app) <-- right now there's no app folder
 				use: ['react-hot-loader', 'babel-loader']
 			}
 		]

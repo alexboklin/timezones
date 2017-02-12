@@ -1,6 +1,6 @@
 import expect from 'expect';
-import * as cityListActions from '../../../redux/actions/cities/list';
-import * as actionTypes from '../../../redux/actions/actionTypes';
+import * as cityListActions from '../../../app/redux/actions/cities/list';
+import * as actionTypes from '../../../app/redux/actions/actionTypes';
 
 describe('city list actions', () => {
     it('should create an action to add a new city to the list', () => {
