@@ -41,8 +41,7 @@ module.exports = {
 	devtool: inProductionMode ? undefined : 'cheap-module-eval-source-map',
 	entry: inProductionMode ? {
         bundle: './app/index.js',
-		// TODO: remove redux-logger -- unused.
-        vendor: ['react', 'react-dom', 'react-redux', 'redux', 'redux-logger', 'redux-persist', 'redux-thunk']
+        vendor: ['react', 'react-dom', 'react-redux', 'redux', 'redux-persist', 'redux-thunk']
     } : [
 		'webpack-dev-server/client?http://localhost:8080', // <-- Enables websocket connection (needs url and port)
 		'webpack/hot/only-dev-server', // <-- to perform HMR in the browser; "only" prevents reload on syntax errors
