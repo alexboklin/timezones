@@ -1,12 +1,12 @@
 const webpack = require('webpack');
 
-const dotEnvConfig = require('dotenv').config();
-const dotEnvVars = Object.keys(dotEnvConfig).
+const dotEnvVars = require('dotenv').config();
+const envVars = Object.keys(dotEnvVars).
 	reduce( (acc, key) => {
-		acc[key] = JSON.stringify(dotEnvConfig[key]);
+		acc[`__${key.toUpperCase()}__`] = JSON.stringify(dotEnvVars[key]);
 		return acc;
 }, {
-	NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+	__NODE_ENV__: JSON.stringify(process.env.NODE_ENV)
 });
 
 const NODE_ENV = process.env.NODE_ENV;
@@ -48,7 +48,7 @@ module.exports = {
     },
 	plugins: [
 	    HtmlWebpackPluginConfig,
-        new webpack.DefinePlugin({'process.env': dotEnvVars}),
+        new webpack.DefinePlugin(envVars),
 		new webpack.HotModuleReplacementPlugin() // <-- To generate hot update chunks
         // TODO: [HMR] Consider using the NamedModulesPlugin for module names.
     ],

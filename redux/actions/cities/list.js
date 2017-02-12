@@ -84,7 +84,6 @@ export const restoreDeletedCityAndNotify = () => {
 export const addCityToListAndNotify = ({ cityId, cityName }) => {
     // See: http://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
     let timestamp = Math.floor(Date.now() / 1000);
-    const apiKey = 'AIzaSyCvwQxLACrb-Dr70mBIKH7DhLIMOgJXUX8'; // TODO: hide in .env file
 
     return (dispatch, getState) => {
         // TODO: use index passed as an argument for this.
@@ -100,7 +99,7 @@ export const addCityToListAndNotify = ({ cityId, cityName }) => {
             response => {
                 let serverCityInfo = response.data;
 
-                getTimezone(serverCityInfo, timestamp, apiKey)
+                getTimezone(serverCityInfo, timestamp)
                 .then(
                     response => {
                         let mapsAPICityInfo = response.data;
@@ -145,8 +144,8 @@ const getCityById = id => {
     return axios.get(`http://localhost:8888/api/city/${id}`)
 };
 
-const getTimezone = ({ latitude, longitude }, timestamp, apiKey) => {
-    // https://developers.google.com/maps/documentation/timezone/intro
+// https://developers.google.com/maps/documentation/timezone/intro
+const getTimezone = ({ latitude, longitude }, timestamp) => {
     return axios.get(`https://maps.googleapis.com/maps/api/timezone/json?location=${latitude},${longitude}
-                    &timestamp=${timestamp}&key=${apiKey}`)
+                    &timestamp=${timestamp}&key=${__GOOGLE_MAPS_API_KEY__}`)
 };
