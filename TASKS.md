@@ -10,3 +10,4 @@
 - Use [throttle](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/operators/throttle.md)/[debounce](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/operators/debounce.md) 
 (on the difference, see [this](https://css-tricks.com/the-difference-between-throttling-and-debouncing/)) 
 for user input 
+- TypeScript vs Flow
