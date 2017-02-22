@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:dev": "npm run clean && webpack-dev-server",
+    "start:dev": "webpack-dev-server",
     "start:production": "NODE_ENV=production node server.js",
     "test": "mocha --compilers js:babel-register --recursive",
     "test:watch": "npm test -- --watch",
