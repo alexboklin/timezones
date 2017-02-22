@@ -4,7 +4,6 @@ import citySuggestions from './cities/suggestions';
 import deletedCity from './cities/deletedCity';
 import hasJustAddedCity from './cities/addingCity';
 import { showNotification, notificationText } from './cities/notification';
-import { reducer as formReducer } from 'redux-form';
 
 const rootReducer = combineReducers({
     cityList,
@@ -12,8 +11,7 @@ const rootReducer = combineReducers({
     deletedCity,
     showNotification,
     notificationText,
-    hasJustAddedCity,
-    form: formReducer
+    hasJustAddedCity
 });
 
 export default rootReducer
