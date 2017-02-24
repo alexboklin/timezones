@@ -1,4 +1,3 @@
-- Switch from npm to Yarn
 - Set publicPath in Webpack config 
 - Use deepFreeze in tests
 - Test utils: Karma/JSDOM + JQuery/Jest/Mocha
