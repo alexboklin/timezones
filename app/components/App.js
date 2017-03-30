@@ -15,27 +15,11 @@ const App = ({ hasJustAddedCity,
     cityListActions, citySuggestionsActions,
     showNotification, notificationActions, notificationText }) => (
     <div>
-        <AutoCompleteForm
-            cityListActions={cityListActions}
-            citySuggestionsActions={citySuggestionsActions}
-            cityList={cityList}
-            citySuggestions={citySuggestions}
-        />
+        <AutoCompleteForm { ...{ cityListActions, citySuggestionsActions, cityList, citySuggestions } } />
 
-        <CityInputSnackbar
-            cityListActions={cityListActions}
-            cityList={cityList}
-            notificationActions={notificationActions}
-            showNotification={showNotification}
-            notificationText={notificationText}
-            hasJustAddedCity={hasJustAddedCity}
-        />
+        <CityInputSnackbar { ...{ cityListActions, cityList, notificationActions, showNotification, notificationText, hasJustAddedCity} } />
 
-        <CityList
-            cityListActions={cityListActions}
-            cityList={cityList}
-        />
-
+        <CityList { ...{ cityListActions, cityList } } />
     </div>
 );
 
