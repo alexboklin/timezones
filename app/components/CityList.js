@@ -29,9 +29,18 @@ export default class CityList extends React.Component {
     }
 
     render() {
+        // Check http://the-echoplex.net/flexyboxes/ for interactive demo.
+        // TODO: move the style to a separate scss file.
         return (
             <div>
-                <List>
+                <List style={{
+                    'display': 'flex',
+                    'flexDirection': 'column',
+                    //'flex-wrap': 'nowrap',
+                    'justifyContent': 'space-between',
+                    //'align-content': 'stretch',
+                    'alignItems': 'center'
+                }}>
                     {
                         this.props.cityList.map(city =>
                             <Chip key={city.placeInList}

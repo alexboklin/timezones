@@ -23,20 +23,31 @@ export default class AutoCompleteForm extends React.Component {
     };
 
     render() {
+        // TODO: move the style to a separate scss file.
         return (
-            <AutoComplete
-                name="citySuggestion"
-                filter={AutoComplete.caseInsensitiveFilter}
-                floatingLabelText="Type the city -- case insensitive"
-                dataSource={this.props.citySuggestions.map(suggestion => ({
-                    cityName: suggestion.text,
-                    cityId: suggestion.id
-                }))}
-                dataSourceConfig={dataSourceConfig}
-                searchText={this.state.searchText}
-                onUpdateInput={this.handleUpdateInput}
-                onNewRequest={this.handleNewRequest}
-            />
+            <div style={{
+                'display': 'flex',
+                'flexDirection': 'column',
+                //'flex-wrap': 'nowrap',
+                'justifyContent': 'space-between',
+                //'align-content': 'stretch',
+                'alignItems': 'center'
+            }}>
+                <AutoComplete
+                    name="citySuggestion"
+                    filter={AutoComplete.caseInsensitiveFilter}
+                    floatingLabelText="Type the city -- case insensitive"
+                    dataSource={this.props.citySuggestions.map(suggestion => ({
+                        cityName: suggestion.text,
+                        cityId: suggestion.id
+                    }))}
+                    dataSourceConfig={dataSourceConfig}
+                    searchText={this.state.searchText}
+                    onUpdateInput={this.handleUpdateInput}
+                    onNewRequest={this.handleNewRequest}
+                />
+            </div>
+
         );
     }
 }

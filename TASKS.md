@@ -1,7 +1,7 @@
 - Set publicPath in Webpack config 
 - Use deepFreeze in tests
 - Test utils: Karma/JSDOM + JQuery/Jest/Mocha
-- [styled-components](https://habrahabr.ru/company/everydaytools/blog/321804/) vs Bootstrap vs Foundation vs flexbox
+- [styled-components](https://habrahabr.ru/company/everydaytools/blog/321804/) vs flexbox
 - Switch to localForage for rehydrating the store
 - Set up ESLint config
 - check out create-react-app for possible insights
