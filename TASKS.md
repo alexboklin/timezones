@@ -1,4 +1,5 @@
-- Set publicPath in Webpack config 
+- Set publicPath in Webpack config
+- Refactor Webpack config (+ production mode)
 - Use deepFreeze in tests
 - Test utils: Karma/JSDOM + JQuery/Jest/Mocha
 - [styled-components](https://habrahabr.ru/company/everydaytools/blog/321804/) vs flexbox

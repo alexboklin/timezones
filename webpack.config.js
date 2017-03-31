@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const dotEnvVars = require('dotenv').config();
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const NODE_ENV = process.env.NODE_ENV;
 const inProductionMode = NODE_ENV === 'production';
@@ -16,6 +17,7 @@ const envVars = Object.keys(dotEnvVars).
 
 const plugins = [
 	new webpack.DefinePlugin(envVars),
+    new ExtractTextPlugin('styles.css'),
 	new HtmlWebpackPlugin({
 		template: path.join(__dirname, '/app/index.html')
 	})
@@ -58,7 +60,17 @@ module.exports = {
 				exclude: /node_modules/,
 				// include: path.join(__dirname, app) <-- right now there's no app folder
 				use: ['react-hot-loader', 'babel-loader']
-			}
+			},
+            {
+                test: /\.scss$/,
+                loader: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: [
+                        { loader: 'css-loader' },
+                        { loader: 'sass-loader' }
+                    ]
+                })
+            }
 		]
 	},
     resolve: {

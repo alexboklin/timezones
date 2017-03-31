@@ -3,6 +3,8 @@ import { List } from 'material-ui/List';
 import Chip from 'material-ui/Chip';
 import moment from 'moment-timezone';
 
+import '../styles.scss';
+
 // On timer implementation, see:
 // https://facebook.github.io/react/docs/state-and-lifecycle.html#adding-lifecycle-methods-to-a-class
 export default class CityList extends React.Component {
@@ -33,18 +35,12 @@ export default class CityList extends React.Component {
         // TODO: move the style to a separate scss file.
         return (
             <div>
-                <List style={{
-                    'display': 'flex',
-                    'flexDirection': 'column',
-                    //'flex-wrap': 'nowrap',
-                    'justifyContent': 'space-between',
-                    //'align-content': 'stretch',
-                    'alignItems': 'center'
-                }}>
+                <List className='flex-container'>
                     {
                         this.props.cityList.map(city =>
-                            <Chip key={city.placeInList}
-                                  onRequestDelete={() => this.props.cityListActions.deleteAndCacheCityAndNotify(city)}>
+                            <Chip
+                                key={city.placeInList}
+                                onRequestDelete={() => this.props.cityListActions.deleteAndCacheCityAndNotify(city)}>
                                 {`${city.suggest.output} ${moment().tz(city.timeZoneId).format()} (${city.timeZoneName})`}
                             </Chip>
                         )
