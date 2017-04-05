@@ -8,8 +8,6 @@ import * as cityListActions from '../redux/actions/cities/list';
 import * as citySuggestionsActions from '../redux/actions/cities/suggestions';
 import * as notificationActions from '../redux/actions/cities/notification'
 
-// Here, we inject the slices of the state (and listen to it) via mapStateToProps
-// and all action creators as props.
 const App = ({ hasJustAddedCity,
     cityList, citySuggestions,
     cityListActions, citySuggestionsActions,
@@ -23,8 +21,6 @@ const App = ({ hasJustAddedCity,
     </div>
 );
 
-// The component will subscribe to Redux store updates.
-// Any time it updates, mapStateToProps will be called.
 const mapStateToProps = state => ({
     cityList: state.cityList,
     citySuggestions: state.citySuggestions,
@@ -34,18 +30,12 @@ const mapStateToProps = state => ({
     hasJustAddedCity: state.hasJustAddedCity
 });
 
-// bindActionCreators turns an object whose values are action creators,
-// into an object with the same keys, but with every action creator wrapped into a dispatch call
-// so they may be invoked directly.
-// dispatch is injected by react-redux, so we can do this: let { dispatch } = this.props
 const mapDispatchToProps = dispatch => ({
     cityListActions: bindActionCreators(cityListActions, dispatch),
     citySuggestionsActions: bindActionCreators(citySuggestionsActions, dispatch),
     notificationActions: bindActionCreators(notificationActions, dispatch)
 });
 
-// connect connects a React component to a Redux store and returns a React component class that injects
-// state and action creators into your component according to the specified options.
 export default connect(
     mapStateToProps,
     mapDispatchToProps
