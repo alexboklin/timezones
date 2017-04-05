@@ -31,23 +31,17 @@ export default class CityList extends React.Component {
     }
 
     render() {
-        // Check http://the-echoplex.net/flexyboxes/ for interactive demo.
-        // TODO: move the style to a separate scss file.
-        return (
-            <div>
-                <List className='flex-container'>
-                    {
-                        this.props.cityList.map(city =>
-                            <Chip
-                                key={city.placeInList}
-                                onRequestDelete={() => this.props.cityListActions.deleteAndCacheCityAndNotify(city)}>
-                                {`${city.suggest.output} ${moment().tz(city.timeZoneId).format()} (${city.timeZoneName})`}
-                            </Chip>
-                        )
-                    }
-                </List>
-            </div>
-        )
+        return <List className='flex-container'>
+            {
+                this.props.cityList.map(city =>
+                    <Chip
+                        key={city.placeInList}
+                        onRequestDelete={() => this.props.cityListActions.deleteAndCacheCityAndNotify(city)}>
+                        {`${city.suggest.output} ${moment().tz(city.timeZoneId).format()} (${city.timeZoneName})`}
+                    </Chip>
+                )
+            }
+        </List>
     }
 }
 
