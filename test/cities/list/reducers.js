@@ -145,6 +145,7 @@ import {
 // });
 
 import test from 'tape';
+import deepFreeze from 'deep-freeze';
 
 test('should return the initial state', t => {
     t.deepEqual(cityListReducers(undefined, {}), []);
@@ -153,6 +154,7 @@ test('should return the initial state', t => {
 
 test('should add a new city to the list', t => {
     const cityListBefore = [];
+    deepFreeze(cityListBefore);
 
     t.deepEqual(cityListReducers(cityListBefore, {
         type: ADD_CITY,
@@ -195,6 +197,7 @@ test('should remove the city from the list by its place', t => {
             country: 'USA'
         }
     ];
+    deepFreeze(cityListBefore);
 
     t.deepEqual(cityListReducers(
         cityListBefore,
@@ -242,6 +245,7 @@ test('should restore the last deleted city', t => {
             country: 'USA'
         }
     ];
+    deepFreeze(cityListBefore);
 
     t.deepEqual(
         cityListReducers(
