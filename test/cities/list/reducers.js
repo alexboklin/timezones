@@ -15,23 +15,22 @@ test('should return the initial state', t => {
 
 test('should add a new city to the list', t => {
     const cityListBefore = [];
-    deepFreeze(cityListBefore);
-
-    t.deepEqual(cityListReducers(cityListBefore, {
+    const action = {
         type: ADD_CITY,
         city: {
             accentName: 'NYC',
             country: 'USA'
         }
-    }),
-        [
-            {
-                placeInList: 0,
-                accentName: 'NYC',
-                country: 'USA'
-            }
-        ]
-    );
+    };
+    const cityListAfter = [
+        {
+            placeInList: 0,
+            accentName: 'NYC',
+            country: 'USA'
+        }
+    ];
+
+    t.deepEqual(cityListReducers(deepFreeze(cityListBefore), deepFreeze(action)), cityListAfter);
     t.end();
 });
 

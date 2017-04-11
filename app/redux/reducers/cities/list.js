@@ -5,12 +5,15 @@ import {
 } from '../../actions/actionTypes';
 
 let cityList = (cityList = [], action) => {
+    // TODO: destructure city and placeInList from action.
+
     switch (action.type) {
 
         case ADD_CITY:
-            let city = action.city;
-            city.placeInList = cityList.reduce((maxId, city) => Math.max(city.placeInList, maxId), -1) + 1;
-            return [...cityList, city];
+            return [
+                ...cityList,
+                {...action.city, placeInList: cityList.reduce((maxId, city) => Math.max(city.placeInList, maxId), -1) + 1}
+            ];
 
         case DELETE_CITY_BY_ITS_PLACE:
             return [
