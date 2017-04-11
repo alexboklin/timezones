@@ -1,3 +1,4 @@
+- Sort out dependencies and devDependencies
 - Set publicPath in Webpack config
 - Refactor Webpack config (+ production mode)
 - Use deepFreeze in tests
