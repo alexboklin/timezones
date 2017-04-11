@@ -57,33 +57,29 @@ test('should remove the city from the list by its place', t => {
             country: 'USA'
         }
     ];
-    deepFreeze(cityListBefore);
-
-    t.deepEqual(cityListReducers(
-        cityListBefore,
+    const action = {
+        type: DELETE_CITY_BY_ITS_PLACE,
+        placeInList: 1
+    };
+    const cityListAfter = [
         {
-            type: DELETE_CITY_BY_ITS_PLACE,
-            placeInList: 1
+            placeInList: 0,
+            accentName: 'NYC',
+            country: 'USA'
+        },
+        {
+            placeInList: 1,
+            accentName: 'Frisco',
+            country: 'USA'
+        },
+        {
+            placeInList: 2,
+            accentName: 'The Hub',
+            country: 'USA'
         }
-    ),
-        [
-            {
-                placeInList: 0,
-                accentName: 'NYC',
-                country: 'USA'
-            },
-            {
-                placeInList: 1,
-                accentName: 'Frisco',
-                country: 'USA'
-            },
-            {
-                placeInList: 2,
-                accentName: 'The Hub',
-                country: 'USA'
-            }
-        ]
-    );
+    ];
+
+    t.deepEqual(cityListReducers(deepFreeze(cityListBefore), deepFreeze(action)), cityListAfter);
     t.end();
 });
 
@@ -105,43 +101,38 @@ test('should restore the last deleted city', t => {
             country: 'USA'
         }
     ];
-    deepFreeze(cityListBefore);
+    const action = {
+        type: RESTORE_DELETED_CITY,
+        city: {
+            placeInList: 1,
+            accentName: 'LA',
+            country: 'USA'
+        }
+    };
+    const cityListAfter = [
+        {
+            placeInList: 0,
+            accentName: 'NYC',
+            country: 'USA'
+        },
+        {
+            placeInList: 1,
+            accentName: 'LA',
+            country: 'USA'
+        },
+        {
+            placeInList: 2,
+            accentName: 'Frisco',
+            country: 'USA'
+        },
+        {
+            placeInList: 3,
+            accentName: 'The Hub',
+            country: 'USA'
+        }
+    ];
 
-    t.deepEqual(
-        cityListReducers(
-            cityListBefore,
-            {
-                type: RESTORE_DELETED_CITY,
-                city: {
-                    placeInList: 1,
-                    accentName: 'LA',
-                    country: 'USA'
-                }
-            }
-        ),
-        [
-            {
-                placeInList: 0,
-                accentName: 'NYC',
-                country: 'USA'
-            },
-            {
-                placeInList: 1,
-                accentName: 'LA',
-                country: 'USA'
-            },
-            {
-                placeInList: 2,
-                accentName: 'Frisco',
-                country: 'USA'
-            },
-            {
-                placeInList: 3,
-                accentName: 'The Hub',
-                country: 'USA'
-            }
-        ]
-    );
+    t.deepEqual(cityListReducers(deepFreeze(cityListBefore), deepFreeze(action)), cityListAfter);
     t.end();
 });
 
