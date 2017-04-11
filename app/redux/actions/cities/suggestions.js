@@ -8,7 +8,6 @@ import axios from 'axios';
 export const fetchCitySuggestions = input => {
 
     return dispatch => {
-
         return axios.get(`http://localhost:8888/api/city?name=${input}`)
             .then(response => {
                 dispatch(receiveCitySuggestions(response.data));
@@ -31,14 +30,7 @@ export const fetchCitySuggestions = input => {
 
 };
 
-// TODO: simply input, no payload key -- right now commented out in the reducer
-const requestCitySuggestions = input => ({
-    type: REQUEST_CITY_SUGGESTIONS,
-    payload: {
-        input
-    }
-});
-
+// TODO: getCitySuggestionsSuccess and getCitySuggestionsError
 const receiveCitySuggestions = citySuggestions => ({
     type: RECEIVE_CITY_SUGGESTIONS,
     citySuggestions
