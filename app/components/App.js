@@ -1,9 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 import AutoCompleteForm from './AutoCompleteForm';
 import CityInputSnackbar from './CityInputSnackbar';
 import CityList from './CityList';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+
 import * as cityListActions from '../redux/actions/cities/list';
 import * as citySuggestionsActions from '../redux/actions/cities/suggestions';
 import * as notificationActions from '../redux/actions/cities/notification'

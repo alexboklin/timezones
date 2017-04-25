@@ -1,7 +1,7 @@
 import React from 'react';
 import Snackbar from 'material-ui/Snackbar';
 
-const CityInputSnackbar = (props) => {
+const CityInputSnackbar = props => {
     return <Snackbar
         contentStyle={{textAlign: 'center'}}
         open={props.showNotification}
