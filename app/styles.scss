@@ -1,9 +1,6 @@
-// Check http://the-echoplex.net/flexyboxes/ for interactive demo.
 .flex-container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  //flex-wrap: nowrap;
-  //align-content: stretch;
 }
