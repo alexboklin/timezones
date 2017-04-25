@@ -11,3 +11,4 @@
 (on the difference, see [this](https://css-tricks.com/the-difference-between-throttling-and-debouncing/)) 
 for user input 
 - TypeScript vs Flow
+- Use functional setState -- see [this](https://medium.freecodecamp.com/functional-setstate-is-the-future-of-react-374f30401b6b) article
